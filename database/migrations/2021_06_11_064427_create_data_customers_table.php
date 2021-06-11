@@ -15,9 +15,9 @@ class CreateDataCustomersTable extends Migration
     {
         Schema::create('data_customers', function (Blueprint $table) {
             $table->id();
-            $table->date('tgl_input');
-            $table->char('nama_customer');
+            $table->string('nama_customer');
             $table->text('alamat_customer');
+            $table->string('email')->unique();
             $table->bigInteger('nomor_hp');
             $table->timestamps();
         });
