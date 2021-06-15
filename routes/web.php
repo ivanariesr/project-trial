@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\customerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('index');
 });
+
+
+//routingan data customer
+Route::resource('datacustomer', customerController::class);
+Route::get('datacustomer', [customerController::class, 'index'])->name('datacustomer.list');
+Route::post('datacustomer-delete', [customerController::class,'destroy']);

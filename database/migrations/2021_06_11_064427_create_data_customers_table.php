@@ -18,7 +18,7 @@ class CreateDataCustomersTable extends Migration
             $table->string('nama_customer');
             $table->text('alamat_customer');
             $table->string('email')->unique();
-            $table->bigInteger('nomor_hp');
+            $table->text('nomor_hp');
             $table->timestamps();
         });
     }
