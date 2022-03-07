@@ -1,0 +1,35 @@
+TABEL data_penjualan : 
+nama_customer
+kode_bahan_jadi
+jumlah_bahan_jadi
+satuan_bahan_jadi
+harga
+ket
+
+TABEL data_bahan_jadi :
+nama_bahan_jadi
+kode_bahan_jadi
+jumlah_bahan_jadi
+satuan_bahan_jadi
+harga
+ket
+
+TABEL data_bahanstgjadi :
+nama_bahan_stgjadi
+kode_bahan_stgjadi
+jumlah_bahan_stgjadi
+satuan_bahan_stgjadi
+harga
+ket
+kode_bahan_baku
+satuan_bahan_baku
+jumlah_bahan_baku
+
+Tabel data_bahanbaku :
+suplier
+nama_bahan_baku
+kode_bahan_baku
+satuan_bahan_baku
+jumlah_bahan_baku
+harga
+ket

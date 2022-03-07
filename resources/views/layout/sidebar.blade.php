@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="/"><img alt="PT Bio Cipta Laboratories" src="{{ asset('assets/img/BCL.png') }}" class="logo-bcl"></a>
+        <a href="/"><img alt="PT Trial" src="{{ asset('assets/img/BCL.pg') }}" class="logo-bcl"></a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
         <a href="index.html">BCL</a>

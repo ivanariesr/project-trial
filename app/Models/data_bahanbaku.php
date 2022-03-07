@@ -10,10 +10,10 @@ class data_bahanbaku extends Model
     use HasFactory;
     protected $fillable = [
         'suplier',
-        'nama_bahan',
-        'kode_bahan',
-        'satuan_bahan',
-        'jumlah',
+        'nama_bahan_baku',
+        'kode_bahan_baku',
+        'satuan_bahan_baku',
+        'jumlah_bahan_baku',
         'harga',
         'ket',
     ];    

@@ -19,7 +19,7 @@ class CreateDataBahanbakusTable extends Migration
             $table->string('nama_bahan_baku');
             $table->string('kode_bahan_baku');
             $table->string('satuan_bahan_baku');
-            $table->bigInteger('jumlah');
+            $table->bigInteger('jumlah_bahan_baku');
             $table->bigInteger('harga');
             $table->text('ket');
             $table->timestamps();

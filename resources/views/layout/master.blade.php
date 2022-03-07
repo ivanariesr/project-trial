@@ -43,7 +43,7 @@
       </div>
       <footer class="main-footer">
         <div class="footer-left">
-          Copyright &copy; 2021 <div class="bullet"></div> <a href="#">PT Bio Cipta Laboratori</a>
+          Copyright &copy; 2021 <div class="bullet"></div> <a href="#">PT Trial</a>
         </div>
         <div class="footer-right">
           Beta
