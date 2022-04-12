@@ -15,11 +15,25 @@ use App\Http\Controllers\customerController;
 */
 
 Route::get('/', function () {
-    return view('index');
+    return view('login');
 });
 
+Route::get('/dashboard', function () {
+    return view('/index');
+});
 
-//routingan data customer
-Route::resource('datacustomer', customerController::class);
-Route::get('datacustomer', [customerController::class, 'index'])->name('datacustomer.list');
-Route::post('datacustomer-delete', [customerController::class,'destroy']);
+Route::get('/input-monitoring', function () {
+    return view('data-monitoring/input-data');
+});
+
+Route::get('/list-monitoring', function () {
+    return view('data-monitoring/list-data');
+});
+
+Route::get('/input-customer', function () {
+    return view('data-customer/input-data');
+});
+
+Route::get('/list-customer', function () {
+    return view('data-customer/list-data');
+});
