@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout-adm.master')
 
 @section('title','Data Monitoring')
 

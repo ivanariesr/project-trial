@@ -15,11 +15,23 @@ use App\Http\Controllers\customerController;
 */
 
 Route::get('/', function () {
+    return view('dashboard-user');
+});
+
+Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/daftar-customer', function () {
+    return view('customer');
+});
+
+Route::get('/daftar-monitoring', function () {
+    return view('monitoring');
+});
+
 Route::get('/dashboard', function () {
-    return view('/index');
+    return view('layout-adm/index');
 });
 
 Route::get('/input-monitoring', function () {

@@ -1,4 +1,4 @@
-@extends('layout.master')
+@extends('layout-adm.master')
 
 @section('title','Data Monitoring')
 
@@ -19,7 +19,7 @@
             <div class="col-12 col-md-12 col-lg-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h4>List Data Proyek</h4>
+                    <h4>List Data Customer</h4>
                 </div>
                 <div class="card-body">
 
@@ -27,24 +27,22 @@
                            <thead class="thead-dark">
                             <tr>
                               <th scope="col">No</th>
-                              <th scope="col">No PRK</th>
-                              <th scope="col">Nama Pekerjaan</th>
-                              <th scope="col">Customer</th>
+                              <th scope="col">Nama Customer</th>
+                              <th scope="col">Type</th>
+                              <th scope="col">Area</th>
                               <th scope="col">Unit</th>
-                              <th scope="col">Status Pekerjaan</th>
-                              <th scope="col">PIC</th>
+                              <th scope="col">Kode Customer</th>
                               <th scope="col">Aksi</th>
                             </tr>
                           </thead>
                           <tbody>
                             <tr>
                               <th scope="row">1</th>
-                              <td>00002022</td>
-                              <td>Major Overhaul ST 2.0 PLTU Belawan</td>
                               <td>PT PLN UIKSBU</td>
+                              <td>PLN</td>
+                              <td>Sumatera</td>
                               <td>PLTU Belawan #1</td>
-                              <td>Belum Jalan</td>
-                              <td>Ria Rizky</td>
+                              <td>CSM01</td>
                               <td>Edit / Delete</td>
                             </tr>
                           </tbody>

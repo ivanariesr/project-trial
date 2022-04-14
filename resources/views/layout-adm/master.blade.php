@@ -13,7 +13,6 @@
   <!-- CSS Libraries -->
 
   <!-- Template CSS -->
-  <link rel="stylesheet" href="{{ asset('assets/css/style-custom.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
   <link rel="stylesheet" href="{{ asset('assets/css/components.css') }}">
   @stack('css-scripts')
@@ -24,8 +23,8 @@
     <div class="main-wrapper">
       <div class="navbar-bg"></div>
 
-      @include('layout.navbar')
-      @include('layout.sidebar')
+      @include('layout-adm.navbar')
+      @include('layout-adm.sidebar')
 
       <!-- Main Content -->
       <div class="main-content">
@@ -61,7 +60,6 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="https://cdn.datatables.net/1.10.7/js/jquery.dataTables.min.js"></script>
   <script src="{{ asset('assets/js/stisla.js') }}"></script>
-
   @stack('js-before-scripts')
 
   <!-- Template JS File -->
