@@ -13,6 +13,7 @@
         <!-- Fonts CSS-->
         <link rel="stylesheet" href="{{ asset('assets/css/heading.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/body.css') }}">
+        <link rel="stylesheet" href="{{ asset('assets/css/style-custom.css') }}">
 
     </head>
     <body id="page-top">

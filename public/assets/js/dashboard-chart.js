@@ -115,6 +115,7 @@ var myChart = new Chart(ctx, {
   },
   options: {
     responsive: true,
+    maintainAspectRatio : false,
     legend: {
       position: 'bottom',
     },
@@ -152,6 +153,7 @@ var myChart = new Chart(ctx, {
   },
   options: {
     responsive: true,
+    maintainAspectRatio : false,
     legend: {
       position: 'bottom',
     },

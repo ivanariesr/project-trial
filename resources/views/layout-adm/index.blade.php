@@ -23,7 +23,9 @@
                     <h4>Line Chart</h4>
                 </div>
                 <div class="card-body">
+                    
                     <canvas id="myChart"></canvas>
+
                 </div>
                 </div>
             </div>
@@ -33,7 +35,9 @@
                     <h4>Bar Chart</h4>
                 </div>
                 <div class="card-body">
+
                     <canvas id="myChart2"></canvas>
+
                 </div>
                 </div>
             </div>
@@ -45,7 +49,9 @@
                     <h4>Doughnut Chart</h4>
                 </div>
                 <div class="card-body">
-                    <canvas id="myChart3" width="400" height="400"></canvas>
+
+                    <canvas id="myChart3"></canvas>
+                
                 </div>
                 </div>
             </div>
@@ -55,7 +61,9 @@
                     <h4>Pie Chart</h4>
                 </div>
                 <div class="card-body">
+
                     <canvas id="myChart4"></canvas>
+
                 </div>
                 </div>
             </div>
