@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Lines Chart</h4>
+                    <h4>Grafik Proyek</h4>
                 </div>
                 <div class="card-body">
                     
@@ -20,7 +20,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Bar Chart</h4>
+                    <h4>Grafik Custommer</h4>
                 </div>
                 <div class="card-body">
 
@@ -35,7 +35,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Doughnut Chart</h4>
+                    <h4>Status Admin</h4>
                 </div>
                 <div class="card-body">
 
@@ -47,7 +47,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Pie Chart</h4>
+                    <h4>Status Pekerjaan</h4>
                 </div>
                 <div class="card-body">
 

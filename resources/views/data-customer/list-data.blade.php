@@ -1,17 +1,33 @@
 @extends('layout-adm.master')
 
-@section('title','Data Monitoring')
+@section('title','Data Customer')
 
-@section('drop-monitoring','active')
+@section('drop-customer','active')
 
-@section('sdbar-list-monitoring','active')
+@section('sdbar-list-customer','active')
 
-@section('content-judul','Data Monitoring')
+@section('content-judul','Data Customer')
+
+@push('css-scripts')
+<link rel="stylesheet" href="../assets/css/style-custom.css">
+@endpush
 
 @section('content-breadcrumb')
-    <div class="breadcrumb-item"><a href="/dashboard">Data Monitoring</a></div>
-    <div class="breadcrumb-item active">Input Data</div>
+    <div class="breadcrumb-item"><a href="/dashboard">Data Customer</a></div>
+    <div class="breadcrumb-item active">List Data</div>
 @endsection
+
+<style type="text/css">
+table {
+    counter-reset: row-num -1;
+  }
+  table tr {
+    counter-increment: row-num;
+  }
+  table tr td:first-child::before {
+      content: counter(row-num) ". ";
+}
+</style>
 
 @section('content-dalam')
     <div class="section-body">
@@ -21,33 +37,27 @@
                 <div class="card-header">
                     <h4>List Data Customer</h4>
                 </div>
+                @if (session('sucess'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ session('sucess') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
+
+                @if (session('error'))
+                <div class="alert alert-error alert-dismissible fade show" role="alert">
+                    {{ session('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                @endif
                 <div class="card-body">
-
-                    <table class="table table-bordered" id="users-table">
-                           <thead class="thead-dark">
-                            <tr>
-                              <th scope="col">No</th>
-                              <th scope="col">Nama Customer</th>
-                              <th scope="col">Type</th>
-                              <th scope="col">Area</th>
-                              <th scope="col">Unit</th>
-                              <th scope="col">Kode Customer</th>
-                              <th scope="col">Aksi</th>
-                            </tr>
-                          </thead>
-                          <tbody>
-                            <tr>
-                              <th scope="row">1</th>
-                              <td>PT PLN UIKSBU</td>
-                              <td>PLN</td>
-                              <td>Sumatera</td>
-                              <td>PLTU Belawan #1</td>
-                              <td>CSM01</td>
-                              <td>Edit / Delete</td>
-                            </tr>
-                          </tbody>
-                    </table>
-
+                  <iframe src="{{route('table-customer')}}" frameborder="0"  width="100%" height="800px" id="iframe-table">
+                </iframe>
+                
                 </div>
                 </div>
             </div>
@@ -56,12 +66,9 @@
         </div>
     </div>
 @endsection
-
 @push('js-before-scripts')
 @endpush
 @push('js-after-scripts')
 @endpush
 
-@push('css-scripts')
-<link rel="stylesheet" href="../assets/css/style-custom.css">
-@endpush
+

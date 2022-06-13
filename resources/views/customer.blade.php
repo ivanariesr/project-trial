@@ -11,28 +11,41 @@
                         <h4>List Data Customer</h4>
                     </div>
                     <div class="card-body">
-
-                        <table class="table table-bordered" id="users-table">
+                        <style type="text/css">
+                            table {
+                                counter-reset: row-num -1;
+                              }
+                              table tr {
+                                counter-increment: row-num;
+                              }
+                              table tr td:first-child::before {
+                                  content: counter(row-num);
+                            }
+                            </style>
+ 
+                        <table class="table table-bordered table-striped" id="DataTables">
                             <thead class="thead-dark">
-                                <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Nama Customer</th>
-                                <th scope="col">Type</th>
-                                <th scope="col">Area</th>
-                                <th scope="col">Unit</th>
-                                <th scope="col">Kode Customer</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <th scope="row">1</th>
-                                <td>PT PLN UIKSBU</td>
-                                <td>PLN</td>
-                                <td>Sumatera</td>
-                                <td>PLTU Belawan #1</td>
-                                <td>CSM01</td>
-                                </tr>
-                            </tbody>
+                             <tr>
+                               <th scope="col">No</th>
+                               <th scope="col">Nama Customer</th>
+                               <th scope="col">Type</th>
+                               <th scope="col">Area</th>
+                               <th scope="col">Unit</th>
+                               <th scope="col">Kode Customer</th>
+                             </tr>
+                           </thead>
+                           <tbody>
+                             @foreach ($displaydata as $dc)
+                             <tr>
+                               <td></td>
+                               <td> {{$dc->customer}}</td>
+                               <td> {{$dc->cust_type}}</td>
+                               <td> {{$dc->area}}</td>
+                               <td> {{$dc->unit}}</td> 
+                               <td> {{$dc->no_idc}}</td>
+                             </tr>
+                            @endforeach
+                           </tbody>
                         </table>
 
                     </div>
@@ -42,7 +55,15 @@
 
             </div>
         </div>
+
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('#DataTables').DataTable({
+            });
+        });
+            </script>
 @endsection
+
 
 @push('js-before-scripts')
 @endpush

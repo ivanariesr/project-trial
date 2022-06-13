@@ -7,6 +7,9 @@
         <meta name="author" content="">
         <title>@yield('title') - {{ config('app.name') }}</title>
         <!-- Font Awesome icons (free version)-->
+        <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.css"/>
+        <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.12.1/datatables.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/js/all.min.js" crossorigin="anonymous"></script>
         <!-- Core theme CSS (includes Bootstrap)-->
         <link rel="stylesheet" href="{{ asset('assets/css/styles2.css') }}">
@@ -14,7 +17,8 @@
         <link rel="stylesheet" href="{{ asset('assets/css/heading.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/body.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style-custom.css') }}">
-
+        @include('sweetalert::alert')
+        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     </head>
     <body id="page-top">
         @include('layout-usr.navbar')
@@ -35,7 +39,6 @@
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.bundle.min.js"></script>
         <!-- Third party plugin JS-->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-       
         @stack('js-before-scripts')
         <!-- Core theme JS-->
         <script src="{{ asset('assets/js/scripts2.js') }}"></script>
