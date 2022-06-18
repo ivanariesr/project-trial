@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\data_customer;
 use Yajra\DataTables\Facades\DataTables;
+use Session;
 
 class customerController extends Controller
 {
@@ -25,9 +26,7 @@ class customerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {   $data_count= data_customer::count();
-        $urutan = $data_count+1;
-        return view('/data-customer/input-data', compact('urutan'));
+    {  
 
     }
 
@@ -121,11 +120,12 @@ class customerController extends Controller
         $displaydata->delete();
         
         if ($displaydata) {
-            return back()->with(['sucess' => 'Data Customer Berhasil Dihapus']);
+            return back()->with(['success' => 'Data Customer Berhasil Di Hapus']);;
         }
         else {
-            return back()->with(['error' => 'Data Customer Gagal Dihapus']);
-        }
+            return back()->with(['error' => 'Data Customer Gagal Di Hapus']);;
+       }
+
     }
 
     public function listdata(Request $request) 

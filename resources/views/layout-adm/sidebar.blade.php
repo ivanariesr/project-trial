@@ -21,10 +21,28 @@
 
           <li class="menu-header">Customer</li>
           <li class="nav-item dropdown @yield('drop-customer')">
-            <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Data Customer</span></a>
+            <a href="#" class="nav-link has-dropdown"><i class="far fa-address-card"></i></i><span>Data Customer</span></a>
             <ul class="dropdown-menu">
               <li class="@yield('sdbar-list-customer')"><a class="nav-link" href="/data-customer/"><i class="fas fa-id-card"></i><span>List Data</span></a></li>
+              <li class="@yield('sdbar-input-customer')"><a class="nav-link" href="/data-customer/create"><i class="fas fa-id-card-alt"></i><span>Input Data</span></a></li>
+            </ul>
+          </li>
+
+          <li class="menu-header">PIC</li>
+          <li class="nav-item dropdown @yield('drop-PIC')">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Data PIC</span></a>
+            <ul class="dropdown-menu">
+              <li class="@yield('sdbar-list-customer')"><a class="nav-link" href="/data-customer/"><i class="far fa-id-badge"></i><span>List Data</span></a></li>
               <li class="@yield('sdbar-input-customer')"><a class="nav-link" href="/data-customer/create"><i class="fas fa-user-plus"></i><span>Input Data</span></a></li>
+            </ul>
+          </li>
+
+          <li class="menu-header">User Aplikasi</li>
+          <li class="nav-item dropdown @yield('drop-user')">
+            <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-secret"></i><span>Data User Aplikasi</span></a>
+            <ul class="dropdown-menu">
+              <li class="@yield('sdbar-list-customer')"><a class="nav-link" href="/data-customer/"><i class="fas fa-user-lock"></i><span>List Data</span></a></li>
+              <li class="@yield('sdbar-input-customer')"><a class="nav-link" href="/data-customer/create"><i class="fas fa-user-tie"></i><span>Input Data</span></a></li>
             </ul>
           </li>
 

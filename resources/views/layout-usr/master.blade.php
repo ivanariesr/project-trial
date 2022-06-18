@@ -17,8 +17,6 @@
         <link rel="stylesheet" href="{{ asset('assets/css/heading.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/body.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/style-custom.css') }}">
-        @include('sweetalert::alert')
-        @include('sweetalert::alert', ['cdn' => "https://cdn.jsdelivr.net/npm/sweetalert2@9"])
     </head>
     <body id="page-top">
         @include('layout-usr.navbar')

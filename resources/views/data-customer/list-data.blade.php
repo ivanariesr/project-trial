@@ -17,17 +17,6 @@
     <div class="breadcrumb-item active">List Data</div>
 @endsection
 
-<style type="text/css">
-table {
-    counter-reset: row-num -1;
-  }
-  table tr {
-    counter-increment: row-num;
-  }
-  table tr td:first-child::before {
-      content: counter(row-num) ". ";
-}
-</style>
 
 @section('content-dalam')
     <div class="section-body">
@@ -37,7 +26,7 @@ table {
                 <div class="card-header">
                     <h4>List Data Customer</h4>
                 </div>
-                @if (session('sucess'))
+                @if (session()->has('sucess'))
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                     {{ session('sucess') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -46,7 +35,7 @@ table {
                 </div>
                 @endif
 
-                @if (session('error'))
+                @if (session()->has('error'))
                 <div class="alert alert-error alert-dismissible fade show" role="alert">
                     {{ session('error') }}
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -55,7 +44,7 @@ table {
                 </div>
                 @endif
                 <div class="card-body">
-                  <iframe src="{{route('table-customer')}}" frameborder="0"  width="100%" height="800px" id="iframe-table">
+                  <iframe src="{{route('table-customer')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="no">
                 </iframe>
                 
                 </div>

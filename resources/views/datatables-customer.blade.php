@@ -15,18 +15,19 @@
 
 <div>
 <style type="text/css">
-table {
-    counter-reset: row-num -1;
-  }
-  table tr {
-    counter-increment: row-num;
-  }
-  table tr td:first-child::before {
-      content: counter(row-num);
+
+.css-serial {
+  counter-reset: serial-number;  /* Set the serial number counter to 0 */
 }
+
+.css-serial td:first-child:before {
+  counter-increment: serial-number;  /* Increment the serial number counter */
+  content: counter(serial-number);  /* Display the counter */
+}
+
 </style>
 
-      <table class="table table-bordered table-striped" id="DataTables">
+      <table class="table table-bordered table-striped css-serial" id="DataTables">
         <thead class="thead-dark">
          <tr>
            <th scope="col">No</th>
