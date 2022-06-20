@@ -15,7 +15,7 @@ class CreateDataSuratsTable extends Migration
     {
         Schema::create('data_surats', function (Blueprint $table) {
             $table->id();
-            $table->string('no_ids',7);
+            $table->string('no_ids',13);
             $table->string('no_penugasan',50);
             $table->string('tgl_penugasan',11);
             $table->string('dok_penugasan');

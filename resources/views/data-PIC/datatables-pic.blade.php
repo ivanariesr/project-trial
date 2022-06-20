@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Laravel 8 DataTables Example</title>
+  <title>Data PIC</title>
 
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -31,11 +31,9 @@
         <thead class="thead-dark">
          <tr>
            <th scope="col">No</th>
-           <th scope="col">Nama Customer</th>
-           <th scope="col">Type</th>
-           <th scope="col">Area</th>
-           <th scope="col">Unit</th>
-           <th scope="col">Kode Customer</th>
+           <th scope="col">Nama</th>
+           <th scope="col">Posisi</th>
+           <th scope="col">Kode PIC</th>
            <th scope="col">Edit</th>
            <th scope="col">Delete</th>
          </tr>
@@ -44,19 +42,16 @@
          @foreach ($displaydata as $dc)
          <tr>
            <td></td>
-           <td> {{$dc->customer}}</td>
-           <td> {{$dc->cust_type}}</td>
-           <td> {{$dc->area}}</td>
-           <td> {{$dc->unit}}</td> 
-           <td> {{$dc->no_idc}}</td> 
+           <td> {{$dc->nama}}</td>
+           <td> {{$dc->posisi}}</td>
+           <td> {{$dc->no_idp}}</td>
            <td>
-             <a href="{{ route('data-customer.edit', $dc->id)}}" target="_parent" class="btn btn-primary">
+             <a href="{{ route('data-pic.edit', $dc->id)}}" target="_parent" class="btn btn-primary">
                Edit
              </a>
            </td>
            <td>
-             
-             <form onsubmit="return confirm('Apa anda yakin ingin menghapus data?');" action="{{route('data-customer.destroy', $dc->id)}}" method="post">
+             <form onsubmit="return confirm('Apa anda yakin ingin menghapus data?');" action="{{route('data-pic.destroy', $dc->id)}}" method="post">
                @csrf
                @method('DELETE')
                <button class="btn btn-danger">Hapus</button>

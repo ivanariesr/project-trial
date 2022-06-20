@@ -15,7 +15,7 @@ class CreateDataCustomersTable extends Migration
     {
         Schema::create('data_customers', function (Blueprint $table) {
             $table->id();
-            $table->string('no_idc',7);
+            $table->string('no_idc',13);
             $table->string('area',20);
             $table->string('cust_type',10);
             $table->string('customer',150);

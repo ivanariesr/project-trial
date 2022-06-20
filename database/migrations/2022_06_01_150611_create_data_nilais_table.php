@@ -15,7 +15,7 @@ class CreateDataNilaisTable extends Migration
     {
         Schema::create('data_nilais', function (Blueprint $table) {
             $table->id();
-            $table->string('no_idn',7);
+            $table->string('no_idn',13);
             $table->bigInteger('rab');
             $table->string('dok_rab');
             $table->bigInteger('pnwrn');

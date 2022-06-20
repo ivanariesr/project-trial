@@ -22,7 +22,28 @@
                     <h4>Input Data Proyek Baru</h4>
                 </div>
                 <div class="card-body">
-                    
+
+                    @if (session()->has('sucess'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ session('sucess') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+    
+                    @if (session()->has('error'))
+                    <div class="alert alert-error alert-dismissible fade show" role="alert">
+                        {{ session('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    @endif
+
+                    <form method="post" action="{{route('data-monitoring.store')}}">
+                        @csrf
+
                         <div class="form-group row">
                           <label for="penugasan" class="col-sm-12 col-form-label"><h6>[PENUGASAN]</h6></label>
                         </div>
@@ -30,24 +51,26 @@
                         <div class="form-group row">
                             <div class="form-group col-sm-4">
                                 <label for="no_penugasan" class="col-form-label">No Surat</label>
-                                <input type="text" class="form-control" id="no_penugasan" placeholder="Nomor Surat">
+                                <input type="text" class="form-control" name="no_penugasan" id="no_penugasan" placeholder="Nomor Surat">
+                                <input type="text" class="form-control" name="no_ids" id="no_ids" placeholder="Nomor ID Surat">
                             </div>
                             <div class="form-group col-sm-8">
                                 <label for="nm_pekerjaan" class="col-form-label">Nama Pekerjaan</label>
-                                <input type="text" class="form-control" id="nm_pekerjaan" placeholder="Nama Pekerjaan" required>
+                                <input type="text" class="form-control" name="nm_pekerjaan" id="nm_pekerjaan" placeholder="Nama Pekerjaan" required>
+                                <input type="text" class="form-control" name="no_idm" id="no_idm" placeholder="Nomor ID Monitoring" >
                             </div>
 
                             <div class="form-group col-sm-4">
                                 <label for="tgl_penugasan" class="col-form-label">Tanggal Surat</label>
-                                <input type="date" class="form-control" id="tgl_penugasan" placeholder="Tanggal Surat">
+                                <input type="date" class="form-control" name="tgl_penugasan" id="tgl_penugasan" placeholder="Tanggal Surat">
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="rkap" class="col-form-label">RKAP / NON RKAP</label>
                                 <select class="form-control" id="rkap" name="rkap" required>
                                     <optgroup label="RKAP / NON RKAP">
-                                        <option value="" disabled selected>Pilih</option>
-                                        <option value="rkap">RKAP</option>
-                                        <option value="nonrkap">Non RKAP</option>
+                                        <option value=""><b>Pilih</b></option>
+                                        <option value="RKAP">RKAP</option>
+                                        <option value="Non RKAP">Non RKAP</option>
                                     </optgroup>
                                 </select>
                             </div>
@@ -63,35 +86,34 @@
                                 <label for="prktype" class="col-form-label">Type</label>
                                 <select class="form-control" id="prktype" name="prktype">
                                     <optgroup label="PRK / WO">
-                                        <option value="" disabled selected>Pilih</option>
-                                        <option value="PRK">WO</option>
+                                        <option value=""><b>Pilih</b></option>
+                                        <option value="WO">WO</option>
                                         <option value="PRK">PRK</option>
                                     </optgroup>
                                 </select>
                             </div>
                             <div class="form-group col-sm-4">
-                                <label for="no_idc" class="col-form-label">Kode Customer</label>
-                                <input type="text" class="form-control" id="no_idc" placeholder="Kode Customer">
+                                <label for="no_idc" class="col-form-label">Unit</label>
+                                <select class="form-control" id="no_idc" name="no_idc" required>
+                                    <option value=""><b>Pilih Unit</b></option>
+                                    @foreach ($datacust as $dc)
+                                    <option value="{{$dc->no_idc}}">{{$dc->unit}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group col-sm-4">
-                                <label for="area" class="col-form-label">Area Customer</label>
-                                <input type="text" class="form-control" id="area" placeholder="Area Customer" required>
                             </div>
 
                             <div class="form-group col-sm-4">
-                                <label for="no_prkorwo" class="col-form-label">Nomor PRK / WO</label>
-                                <input type="text" class="form-control" id="no_prkorwo" placeholder="Input Nomor PRK / WO">
+                                <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO</label>
+                                <input type="text" class="form-control" name="no_PRKorWO" id="no_PRKorWO" placeholder="Input Nomor PRK / WO">
                             </div>
 
                             <div class="form-group col-sm-4">
-                                <label for="customer" class="col-form-label">Customer</label>
-                                <input type="text" class="form-control" id="customer" placeholder="Customer" required>
                             </div>
 
                             <div class="form-group col-sm-4">
-                                <label for="unit" class="col-form-label">Unit</label>
-                                <input type="text" class="form-control" id="unit" placeholder="Unit Pembangkit">
                             </div>
                         </div>
 
@@ -105,61 +127,62 @@
                                 <label for="stts_pkerjaan" class="col-form-label">Status Pekerjaan</label>
                                 <select class="form-control" id="stts_pkerjaan" name="stts_pkerjaan" required>
                                     <optgroup label="Status Pekerjaan">
-                                        <option value="" disabled selected>Pilih</option>
-                                        <option value="batal">Batal</option>
-                                        <option value="blmjalan">Belum Jalan</option>
-                                        <option value="running">Running</option>
-                                        <option value="selesai">Selesai</option>
+                                        <option value=""><b>Pilih Status</b></option>
+                                        <option value="Batal">Batal</option>
+                                        <option value="Belum Jalan">Belum Jalan</option>
+                                        <option value="Running">Running</option>
+                                        <option value="Selesai">Selesai</option>
                                     </optgroup>
                                 </select>
 
                                 <label for="stts_admin" class="col-form-label">Status Admin</label>
-                                <select class="form-control" id="stts_pkerjaan" name="stts_admin">
+                                <select class="form-control" id="stts_pkerjaan" name="stts_admin" required>
                                     <optgroup label="Status Admin">
-                                        <option value="" disabled selected>Pilih</option>
-                                        <option value="blmadapermintaan">Belum Ada Permintaan</option>
-                                        <option value="rab">RAB</option>
-                                        <option value="pricing">Pricing</option>
-                                        <option value="penawaran">Penawaran</option>
-                                        <option value="nego">Nego</option>
-                                        <option value="blmkontrak">Belum Kontrak</option>
-                                        <option value="kspktnharga">Kesepakatan Harga</option>
-                                        <option value="bakspktn">BA Kesepakatan</option>
-                                        <option value="kontrak">Kontrak</option>
-                                        <option value="amandemen">Amandemen</option>
-                                        <option value="laporanba">Laporan / BA</option>
-                                        <option value="terminretensi">Termin / Retensi</option>
-                                        <option value="tagihan">Tagihan</option>
-                                        <option value="terbayar">Terbayar</option>
-                                        <option value="cancel">Cancel</option>
+                                        <option value=""><b>Pilih Status</b></option>
+                                        <option value="Belum Ada Permintaan">Belum Ada Permintaan</option>
+                                        <option value="RAB">RAB</option>
+                                        <option value="Pricing">Pricing</option>
+                                        <option value="Penawaran">Penawaran</option>
+                                        <option value="Nego">Nego</option>
+                                        <option value="Belum Kontrak">Belum Kontrak</option>
+                                        <option value="Kesepakatan Harga">Kesepakatan Harga</option>
+                                        <option value="BA Kesepakatan">BA Kesepakatan</option>
+                                        <option value="Kontrak">Kontrak</option>
+                                        <option value="Amandemen">Amandemen</option>
+                                        <option value="Laporan / BA">Laporan / BA</option>
+                                        <option value="Termin / Retensi">Termin / Retensi</option>
+                                        <option value="Tagihan">Tagihan</option>
+                                        <option value="Terbayar">Terbayar</option>
+                                        <option value="Cancel">Cancel</option>
                                     </optgroup>
                                 </select>
                                 
                                 <label for="tgl_mulai" class="col-form-label">Tanggal Mulai</label>
-                                <input type="date" class="form-control col-sm-6" id="tgl_mulai" placeholder="Tanggal Mulai Pekerjaan">
+                                <input type="date" class="form-control col-sm-6" name="tgl_mulai" id="tgl_mulai" placeholder="Tanggal Mulai Pekerjaan">
 
                                 <label for="tgl_akhir" class="col-form-label">Tanggal Akhir</label>
-                                <input type="date" class="form-control col-sm-6" id="tgl_akhir" placeholder="Tanggal Akhir Pekerjaan">
+                                <input type="date" class="form-control col-sm-6" name="tgl_akhir" id="tgl_akhir" placeholder="Tanggal Akhir Pekerjaan">
                             </div>
 
                             <div class="form-group col-sm-2">
+                                <input type="text" class="form-control" name="no_idn" id="no_idn" placeholder="Nomor ID Nilai" >
                                 <label for="rab" class="col-form-label">RAB Dasar</label>
-                                <input type="text" class="form-control" id="rab" placeholder="RAB Dasar">
+                                <input type="text" class="form-control" name="rab" id="rab" placeholder="RAB Dasar">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_rab">
                                 <br>
                                 <br>
                                 <label for="kontrak" class="col-form-label">Kontrak</label>
                                 <input type="text" class="form-control" id="kontrak" placeholder="Harga Kontrak">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_kontrak">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="pnwrn" class="col-form-label">Penawaran</label>
                                 <input type="text" class="form-control" id="pnwrn" placeholder="Penawaran Harga">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_pnwrn">
                                 <br>
                                 <br>
                                 <label for="tagihan" class="col-form-label">Tagihan</label>
@@ -172,7 +195,7 @@
                                 <br>
                                 <br>
                                 <br>
-                                <label for="terbayar" class="col-form-label" style="padding-top: 20px">Terbayar</label>
+                                <label for="terbayar" class="col-form-label" style="">Terbayar</label>
                                 <input type="text" class="form-control" id="terbayar" placeholder="Nilai Terbayar">
                             </div>
 
@@ -189,23 +212,38 @@
 
                         <div class=row>
                             <div class="form-group col-sm-2">
-                                <label for="nm_pm" class="col-form-label">Project Manager</label>
-                                <input type="text" class="form-control" id="nm_pm" placeholder="Nama PM">
+                                <label for="no_idppm" class="col-form-label">Project Manager</label>
+                                <select class="form-control" id="no_idppm" name="no_idppm" required>
+                                    <option value=""><b>Pilih PM</b></option>
+                                    @foreach ($datapic_idppm as $dp3)
+                                    <option value="{{$dp3->no_idp}}">{{$dp3->nama}}</option>
+                                    @endforeach
+                                </select>
                                 <br>
-                                <label for="nm_rend" class="col-form-label">Rendal</label>
-                                <input type="text" class="form-control" id="nm_rend" placeholder="Nama Rendal">
+                                <label for="no_idpre" class="col-form-label">Rendal</label>
+                                <select class="form-control" id="no_idpre" name="no_idpre" required>
+                                    <option value=""><b>Pilih Rendal</b></option>
+                                    @foreach ($datapic_idpre as $dp2)
+                                    <option value="{{$dp2->no_idp}}">{{$dp2->nama}}</option>
+                                    @endforeach
+                                </select>                            
                             </div>
 
                             <div class="form-group col-sm-2">
-                                <label for="nm_niaga" class="col-form-label">Niaga</label>
-                                <input type="text" class="form-control" id="nm_niaga" placeholder="Nama Niaga">
+                                <label for="no_idpni" class="col-form-label">Niaga</label>
+                                <select class="form-control" id="no_idpni" name="no_idpni" required>
+                                    <option value=""><b>Pilih Niaga</b></option>
+                                    @foreach ($datapic_idpni as $dp1)
+                                    <option value="{{$dp1->no_idp}}">{{$dp1->nama}}</option>
+                                    @endforeach
+                                </select>
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="noba_kspktn" class="col-form-label">Nomor BAK</label>
                                 <input type="text" class="form-control" id="noba_kspktn" placeholder="Nomor Surat">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_kspktn">
                             </div>
                             
                             <div class="form-group col-sm-2">
@@ -217,7 +255,7 @@
                                 <label for="noba_pp" class="col-form-label">Nomor BAPP</label>
                                 <input type="text" class="form-control" id="noba_pp" placeholder="Nomor Surat">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_pp">
                             </div>
                             
                             <div class="form-group col-sm-2">
@@ -225,14 +263,16 @@
                                 <input type="date" class="form-control" id="tglp_dok" placeholder="Tanggal Mulai Pekerjaan">
                             </div>
 
-                            <div class="form-group col-sm-2"></div>
-                            <div class="form-group col-sm-2"></div>
+                            <div class="form-group col-sm-4">
+                                <label for="tglp_dok" class="col-form-label">Keterangan Pekerjaan</label>
+                                <textarea class="form-control" id="ket_progress"> </textarea>
+                            </div>
                             
                             <div class="form-group col-sm-2">
                                 <label for="noba_stp" class="col-form-label">Nomor BASTP</label>
                                 <input type="text" class="form-control" id="noba_stp" placeholder="Nomor Surat">
                                 <br>
-                                <button type="upload" class="btn btn-primary">Upload</button>
+                                <input type="file" name="dok_stp">
                             </div>
                             
                             <div class="form-group col-sm-2">
@@ -240,11 +280,10 @@
                                 <input type="date" class="form-control" id="tgls_dok" placeholder="Tanggal Mulai Pekerjaan">
                             </div>
                         </div>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-plus-square"></i> Tambah Data</button>
+                    </form>
 
                 </div>
-                </div>
-                <div class="card-footer">
-                    <a href="/stokbahanbaku/tambah" class="btn btn-icon icon-left btn-info"><i class="far fa-plus-square"></i>Tambah Data</a>
                 </div>
             </div>
             </div>
@@ -252,7 +291,35 @@
         </div>
     </div>
 @endsection
+<script>
 
+
+    var d = new Date().getTime();
+    // Remove some of the X's to generate a smaller ID 
+    // You can also remove '-' if you don't want the ID formatted in sections
+    var uuid = 'xxxx-xxxx'.replace(/[xy]/g, function(c) {
+        var r = (d + Math.random()*16)%16 | 0;
+        d = Math.floor(d/16);
+        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
+    });
+
+    function generateids() {
+    var pre = 'IDS-';
+    document.getElementById('no_ids').value= pre+uuid;
+    //return uuid;
+    }
+    function generateidm() {
+    var pre = 'IDM-';
+    document.getElementById('no_idm').value= pre+uuid;
+    //return uuid;
+    }
+    function generateidn() {
+    var pre = 'IDN-';
+    document.getElementById('no_idn').value= pre+uuid;
+    //return uuid;
+    }
+window.addEventListener("load", myInit, true); function myInit(){generateids(),generateidm(),generateidn()};
+</script>
 @push('js-before-scripts')
 @endpush
 @push('js-after-scripts')

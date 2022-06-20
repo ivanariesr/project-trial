@@ -15,21 +15,22 @@ class CreateDataMonitoringsTable extends Migration
     {
         Schema::create('data_monitorings', function (Blueprint $table) {
             $table->id();
-            $table->string('no_idm',7);
-            $table->string('no_idn',7);
-            $table->string('no_idc',7);
-            $table->string('no_idp',7);
-            $table->string('no_ids',7);
+            $table->string('no_idm',13);
+            $table->string('no_idn',13);
+            $table->string('no_idc',13);
+            $table->string('no_idpre',15);
+            $table->string('no_idpni',15);
+            $table->string('no_idppm',15);
+            $table->string('no_ids',13);
             $table->string('prktype',10);
             $table->string('no_PRKorWO',10);
-            $table->string('nm_pkerjaan',255);
+            $table->string('nm_pekerjaan',255);
             $table->string('rkap',9);
-            $table->string('stts_pkerjaan',12);
+            $table->string('stts_pkerjaan',20);
             $table->string('tgl_mulai',11);
             $table->string('tgl_akhir',11);
             $table->string('stts_admin',17);
             $table->text('ket_progress');
-            $table->string('due_date',11);
             $table->timestamps();
         });
     }

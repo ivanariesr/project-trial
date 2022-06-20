@@ -14,20 +14,24 @@ use Yajra\DataTables\Facades\DataTables;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* Resource Routes */
+/* Resource Routes Admin */
 Route::resource('data-customer', 'customerController');
 Route::resource('data-monitoring', 'monitoringController');
+Route::resource('data-pic', 'picController');
 /* -------------------------------- */
+
+/* Resource Routes User */
+Route::resource('daftar-customer', 'usrCustomerController');
+/* -------------------------------- */
+
 Route::get('/', function () {
+
     return view('dashboard-user');
 });
 
 Route::get('/login', function () {
     return view('login');
 });
-
-Route::resource('daftar-customer', 'usrCustomerController');
-
 
 Route::get('/daftar-monitoring', function () {
     return view('monitoring');
@@ -38,3 +42,4 @@ Route::get('/dashboard', function () {
 });
 
 Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
+Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');

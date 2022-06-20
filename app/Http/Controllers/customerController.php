@@ -4,8 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\data_customer;
-use Yajra\DataTables\Facades\DataTables;
-use Session;
 
 class customerController extends Controller
 {
@@ -27,7 +25,7 @@ class customerController extends Controller
      */
     public function create()
     {  
-
+        return view('/data-customer/input-data');
     }
 
     /**
@@ -131,7 +129,7 @@ class customerController extends Controller
     public function listdata(Request $request) 
     {
         $displaydata = data_customer::all();
-        return view('datatables-customer', compact('displaydata'));
+        return view('/data-customer/datatables-customer', compact('displaydata'));
 
     }
 }
