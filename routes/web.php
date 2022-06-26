@@ -2,7 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\customerController;
+use App\Http\Controllers\authController;
 use Yajra\DataTables\Facades\DataTables;
+use App\Http\Middleware\Authenticate;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,9 +39,16 @@ Route::get('/daftar-monitoring', function () {
     return view('monitoring');
 });
 
-Route::get('/dashboard', function () {
-    return view('layout-adm/index');
-});
 
-Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
-Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');
+Route::get('/login', [authController::class,"loginView"])->name('login');
+Route::get('/register', [authController::class,"registerView"]);
+Route::post('/do-login', [authController::class,"doLogin"]);
+Route::post('/do-register', [authController::class,"doRegister"]);
+
+Route::group(['middleware' =>authenticate::class ], function () {
+    Route::get('/dashboard', [authController::class,"dashboard"]);
+    Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
+    Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');    
+    Route::get('/datatables-user', 'userController@listdata')->name('table-user');    
+    Route::get('/logout', [authController::class,"logout"]);
+});

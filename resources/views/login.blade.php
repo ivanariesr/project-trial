@@ -31,15 +31,31 @@
               <div class="card-header"><h4>Login Monitoring</h4></div>
 
               <div class="card-body">
-                <form method="get" action="/dashboard" class="needs-validation" novalidate="">
+                @if (\Session::has('success'))
+                <div class="alert alert-success">
+                    <ul>
+                        <li>{!! \Session::get('success') !!}</li>
+                    </ul>
+                </div>
+                @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+                <form method="post" id="handleAjax" action="{{url('do-login')}}" name="postform">
                   <div class="form-group">
                     <label for="username">Username</label>
-                    <input id="username" type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                    <input id="username" type="username" class="form-control" value="{{old('username')}}" name="username" tabindex="1" required autofocus>
                     <div class="invalid-feedback">
                       Masukkan Username Anda
                     </div>
                   </div>
-
+                  @csrf
                   <div class="form-group">
                     <div class="d-block">
                     	<label for="password" class="control-label">Password</label>
