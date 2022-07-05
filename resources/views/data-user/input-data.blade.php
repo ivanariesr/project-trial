@@ -26,50 +26,51 @@
                     <h4>Input Data User</h4>
                 </div>
                 <div class="card-body">
-                    @if (session()->has('sucess'))
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        {{ session('sucess') }}
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    @endif
     
-                    @if (session()->has('error'))
-                    <div class="alert alert-error alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     @endif
-                    <form method="post" id="pic" action="{{ route('data-pic.store')}}">
+
+                    <form method="post" id="handleAjax" action="{{url('do-register')}}" name="postform">
                         @csrf
                         <div class="form-group row">
                             <div class="form-group col-sm-3">
-                                <label for="pic" class="col-form-label">Nama PIC</label>
-                                <input type="text" class="form-control" id="pic" name="nama" placeholder="Nama PIC" required>
-                            </div>
-
-                            <div class="form-group col-sm-2">
-                                <label for="posisi" class="col-form-label">Posisi</label>
-                                <select class="form-control" id="posisi" name="posisi" required onchange="generateid()">
-                                        <option value=""><b>Pilih Posisi PIC</b></option>
-                                        <option id="IDPNI" value="Niaga">Niaga</option>
-                                        <option id="IDPRE" value="Rendal" >Rendal</option>
-                                        <option id="IDPPM" value="PM" >Project Manager</option>
-                                </select>
+                                <label for="name" class="col-form-label">Nama User</label>
+                                <input type="text" value="{{old('name')}}" class="form-control" id="name" name="name" placeholder="Nama User" required>
                             </div>
 
                             <div class="form-group col-sm-3">
-                                <label for="no_idp" class="col-form-label">Kode PIC</label>
-                                <input type="text" class="form-control" id="no_idp" name="no_idp" placeholder="Kode PIC" required readonly>
+                                <label for="email" class="col-form-label">Email</label>
+                                <input type="email" value="{{old('email')}}" class="form-control" id="email" name="email" placeholder="Email" required>
                             </div>
-                            <div class="form-group col-sm-2">
-                                <button type="button" class="btn btn-warning top" onclick="generateid()">Generate</button>
+                        </div> 
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-3">
+                                <label for="username" class="col-form-label">Username</label>
+                                <input type="text" value="{{old('username')}}" class="form-control" id="username" name="username" placeholder="Username" required onkeyup="nospaces(this)">
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="password" class="col-form-label">Password</label>
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Password" required>
+                            </div>
+
+                            <div class="form-group col-sm-3">
+                                <label for="password" class="col-form-label">Confirm Password</label>
+                                <input type="password" class="form-control" id="password" name="confirm_password" placeholder="Confirm Password" required>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary"><i class="far fa-plus-square"></i> Tambah Data</button>
+                        <button type="submit" class="btn btn-primary"><i class="far fa-plus-square"></i> Register </button>
                     </form>
 
                 </div>
@@ -82,25 +83,12 @@
         </div>
     </div>
 @endsection
-<script>
-    function generateid() {
-
-        var select = document.getElementById('posisi');
-        var pre = select.options[select.selectedIndex].id;
-        
-        var d = new Date().getTime();
-        // Remove some of the X's to generate a smaller ID 
-        // You can also remove '-' if you don't want the ID formatted in sections
-        var uuid = 'xxxx-xxxx'.replace(/[xy]/g, function(c) {
-        var r = (d + Math.random()*16)%16 | 0;
-        d = Math.floor(d/16);
-        return (c=='x' ? r : (r&0x3|0x8)).toString(16);
-
-    });
-    document.getElementById('no_idp').value= pre+"-"+uuid;
-    //return uuid;
+<script type="text/javascript">
+function nospaces(t){
+  if(t.value.match(/\s/g)){
+    t.value=t.value.replace(/\s/g,'');
+  }
 }
-    
 </script>
 @push('js-before-scripts')
 @endpush

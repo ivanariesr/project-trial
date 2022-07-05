@@ -13,11 +13,6 @@ class authController extends Controller
         return view("login");
     }
 
-    function registerView()
-    {
-        return view("register");
-    }
-
     function doLogin(Request $request)
     {
 
@@ -50,11 +45,11 @@ class authController extends Controller
             'email' => 'required|email|unique:users,email',   // required and email format validation
             'password' => 'required|min:8', // required and number field validation
             'confirm_password' => 'required|same:password',
+        ], [
 
         ]); // create the validations
         if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
         {
-
             return back()->withInput()->withErrors($validator);
             // validation failed redirect back to form
 
@@ -66,8 +61,8 @@ class authController extends Controller
             $User->email = $request->email;
             $User->password = bcrypt($request->password);
             $User->save();
-
-            return redirect("login")->with('success', 'Registrasi Berhasil, Login untuk mengakses dashboard');
+            return redirect()->route('data-user.index')
+            ->with(['sucess' => 'Data User Berhasil di Registrasi']);        
         }
     }
    // show dashboard

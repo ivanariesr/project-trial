@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\data_pic;
+
 class picController extends Controller
 {
     /**

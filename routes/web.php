@@ -16,11 +16,7 @@ use App\Http\Middleware\Authenticate;
 | contains the "web" middleware group. Now create something great!
 |
 */
-/* Resource Routes Admin */
-Route::resource('data-customer', 'customerController');
-Route::resource('data-monitoring', 'monitoringController');
-Route::resource('data-pic', 'picController');
-/* -------------------------------- */
+
 
 /* Resource Routes User */
 Route::resource('daftar-customer', 'usrCustomerController');
@@ -41,14 +37,23 @@ Route::get('/daftar-monitoring', function () {
 
 
 Route::get('/login', [authController::class,"loginView"])->name('login');
-Route::get('/register', [authController::class,"registerView"]);
 Route::post('/do-login', [authController::class,"doLogin"]);
-Route::post('/do-register', [authController::class,"doRegister"]);
 
+/*----------------------------------------------------------------------------------- */
 Route::group(['middleware' =>authenticate::class ], function () {
+
+    /* Resource Routes Admin */
+Route::resource('data-customer', 'customerController');
+Route::resource('data-monitoring', 'monitoringController');
+Route::resource('data-pic', 'picController');
+Route::resource('data-user', 'userController');
+/* -------------------------------- */
+
     Route::get('/dashboard', [authController::class,"dashboard"]);
     Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
     Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');    
     Route::get('/datatables-user', 'userController@listdata')->name('table-user');    
+
+    Route::post('/do-register', [authController::class,"doRegister"]);
     Route::get('/logout', [authController::class,"logout"]);
 });

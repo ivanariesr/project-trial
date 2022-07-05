@@ -43,7 +43,7 @@ class customerController extends Controller
             'unit' => 'required',
             'no_idc' => 'required'
         ]);
-        $displaydata = data_customer::create($validatedData);
+        $displaydata = data_customer::save($validatedData);
 
          if ($displaydata) {
             return redirect()->route('data-customer.index')

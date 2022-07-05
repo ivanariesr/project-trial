@@ -27,7 +27,13 @@
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
+
                             <div class="form-group col-sm-4">
+                                <label for="unit" class="col-form-label">Unit</label>
+                                <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit" required value="{{$dc->unit}}">
+                            </div>
+
+                            <div class="form-group col-sm-2">
                                 <label for="customer" class="col-form-label">Customer</label>
                                 <input type="text" class="form-control" id="customer" name="customer" placeholder="Nama Customer" required value="{{$dc->customer}}">
                             </div>
@@ -45,11 +51,6 @@
                             <div class="form-group col-sm-2">
                                 <label for="area" class="col-form-label">Area</label>
                                 <input type="text" class="form-control" id="area" name="area" placeholder="Area" required value="{{$dc->area}}">
-                            </div>
-
-                            <div class="form-group col-sm-2">
-                                <label for="unit" class="col-form-label">Unit</label>
-                                <input type="text" class="form-control" id="unit" name="unit" placeholder="Unit" required value="{{$dc->unit}}">
                             </div>
 
                             <div class="form-group col-sm-2">
