@@ -50,7 +50,7 @@ class monitoringController extends Controller
             'no_ids' => $request->no_ids,
             'nm_pekerjaan' => $request->nm_pekerjaan,
             'rkap' => $request->rkap,
-            'stts_pkerjaan' => $request->sts_pkerjaan,
+            'stts_pkerjaan' => $request->stts_pkerjaan,
             'no_idpre' => $request->no_idpre,
             'no_idpni' => $request->no_idpni,
             'no_idppm' => $request->no_idppm,
@@ -61,6 +61,8 @@ class monitoringController extends Controller
             'stts_admin' => $request->stts_admin,
             'ket_progress' => $request->ket_progress
         ]);
+        dd($displaydata);
+        $displaydata = data_customer::save($validatedData);
 
          if ($displaydata ) {
             return redirect()->route('data-monitoring.index')

@@ -40,7 +40,7 @@ Route::get('/login', [authController::class,"loginView"])->name('login');
 Route::post('/do-login', [authController::class,"doLogin"]);
 
 /*----------------------------------------------------------------------------------- */
-Route::group(['middleware' =>authenticate::class ], function () {
+Route::group(['middleware' => authenticate::class ], function () {
 
     /* Resource Routes Admin */
 Route::resource('data-customer', 'customerController');

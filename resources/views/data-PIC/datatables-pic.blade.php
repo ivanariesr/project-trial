@@ -26,7 +26,6 @@
 }
 
 </style>
-
       <table class="table table-bordered table-striped css-serial" id="DataTables">
         <thead class="thead-dark">
          <tr>

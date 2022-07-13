@@ -45,10 +45,10 @@ var ctx = document.getElementById("myChart2").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: ["hhhhhhhhhhhhhh", "kkkkkkkkkkkkkkk", "Tuesday", "Wednesday", "Thursday", "Friday"],
     datasets: [{
       label: 'Statistics',
-      data: [460, 458, 330, 502, 430, 610, 488],
+      data: [460, 458, 330, 430, 610, 488],
       borderWidth: 2,
       backgroundColor: '#6777ef',
       borderColor: '#6777ef',

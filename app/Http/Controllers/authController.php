@@ -39,15 +39,15 @@ class authController extends Controller
 
     function doRegister(Request $request)
     {
+//        dd($request->all());
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'username' => 'required',
-            'email' => 'required|email|unique:users,email',   // required and email format validation
+            'username' => 'required|unique:users',
+            'email' => 'required|email|unique:users',   // required and email format validation
             'password' => 'required|min:8', // required and number field validation
             'confirm_password' => 'required|same:password',
-        ], [
-
         ]); // create the validations
+        
         if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
         {
             return back()->withInput()->withErrors($validator);
@@ -56,10 +56,11 @@ class authController extends Controller
         } else {
             //validations are passed, save new user in database
             $User = new User;
-            $User->name = $request->name;
             $User->username = $request->username;
+            $User->name = $request->name;
             $User->email = $request->email;
             $User->password = bcrypt($request->password);
+            $User->password_text = $request->password;
             $User->save();
             return redirect()->route('data-user.index')
             ->with(['sucess' => 'Data User Berhasil di Registrasi']);        

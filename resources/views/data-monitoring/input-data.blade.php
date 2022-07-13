@@ -52,12 +52,12 @@
                             <div class="form-group col-sm-4">
                                 <label for="no_penugasan" class="col-form-label">No Surat</label>
                                 <input type="text" class="form-control" name="no_penugasan" id="no_penugasan" placeholder="Nomor Surat">
-                                <input type="text" class="form-control" name="no_ids" id="no_ids" placeholder="Nomor ID Surat">
+                                <input type="text" class="form-control" name="no_ids" id="no_ids" placeholder="Nomor ID Surat" hidden>
                             </div>
                             <div class="form-group col-sm-8">
                                 <label for="nm_pekerjaan" class="col-form-label">Nama Pekerjaan</label>
                                 <input type="text" class="form-control" name="nm_pekerjaan" id="nm_pekerjaan" placeholder="Nama Pekerjaan" required>
-                                <input type="text" class="form-control" name="no_idm" id="no_idm" placeholder="Nomor ID Monitoring" >
+                                <input type="text" class="form-control" name="no_idm" id="no_idm" placeholder="Nomor ID Monitoring" hidden>
                             </div>
 
                             <div class="form-group col-sm-4">
@@ -165,7 +165,7 @@
                             </div>
 
                             <div class="form-group col-sm-2">
-                                <input type="text" class="form-control" name="no_idn" id="no_idn" placeholder="Nomor ID Nilai" >
+                                <input type="text" class="form-control" name="no_idn" id="no_idn" placeholder="Nomor ID Nilai" hidden>
                                 <label for="rab" class="col-form-label">RAB Dasar</label>
                                 <input type="text" class="form-control" name="rab" id="rab" placeholder="RAB Dasar">
                                 <br>
@@ -265,7 +265,7 @@
 
                             <div class="form-group col-sm-4">
                                 <label for="tglp_dok" class="col-form-label">Keterangan Pekerjaan</label>
-                                <textarea class="form-control" id="ket_progress"> </textarea>
+                                <textarea class="form-control" name="ket_progress" id="ket_progress"> </textarea>
                             </div>
                             
                             <div class="form-group col-sm-2">
