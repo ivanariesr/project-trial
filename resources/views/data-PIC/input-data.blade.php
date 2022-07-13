@@ -35,14 +35,19 @@
                     </div>
                     @endif
     
-                    @if (session()->has('error'))
-                    <div class="alert alert-error alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                     </div>
                     @endif
+                    
                     <form method="post" id="pic" action="{{ route('data-pic.store')}}">
                         @csrf
                         <div class="form-group row">

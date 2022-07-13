@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Models\data_customer;
 
 class customerController extends Controller
@@ -36,22 +38,30 @@ class customerController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
+
+        $validator = Validator::make($request->all(), [
             'customer' => 'required',
             'cust_type' => 'required',
             'area' => 'required',
-            'unit' => 'required',
+            'unit' => 'required|unique:data_customers',
             'no_idc' => 'required'
         ]);
-        $displaydata = data_customer::save($validatedData);
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return back()->withInput()->withErrors($validator);
+            // validation failed redirect back to form
+        } else { 
 
-         if ($displaydata) {
-            return redirect()->route('data-customer.index')
-            ->with(['sucess' => 'Data Customer Berhasil Di Simpan']);
-        }
-        else {
-            return redirect()->route('data-customer.index')
-            ->with(['error' => 'Data Customer Gagal Di Simpan']);
+            $Cust = new data_customer;
+            $Cust->customer = $request->customer;
+            $Cust->cust_type = $request->cust_type;
+            $Cust->area = $request->area;
+            $Cust->unit = $request->unit;
+            $Cust->no_idc = $request->no_idc;
+            $Cust->save();
+
+        return redirect()->route('data-customer.index')
+        ->with(['sucess' => 'Data Customer Berhasil Di Simpan']);
         }
 }
     /**
@@ -86,22 +96,29 @@ class customerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'customer' => 'required',
             'cust_type' => 'required',
             'area' => 'required',
-            'unit' => 'required',
+            'unit' => ['required',Rule::unique('data_customers')->ignore($id)],
             'no_idc' => 'required'
         ]);
-        $displaydata = data_customer::whereId($id)->update($validatedData);
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return back()->withInput()->withErrors($validator);
+            // validation failed redirect back to form
+        } else { 
 
-        if ($displaydata) {
-            return redirect()->route('data-customer.index')
-            ->with(['sucess' => 'Data Customer Berhasil Di Update']);
-        }
-        else {
-            return redirect()->route('data-customer.index')
-            ->with(['error' => 'Data Customer Gagal Di Update']);
+            $Cust = data_customer::find($id);
+            $Cust->customer = $request->customer;
+            $Cust->cust_type = $request->cust_type;
+            $Cust->area = $request->area;
+            $Cust->unit = $request->unit;
+            $Cust->no_idc = $request->no_idc;
+            $Cust->save();
+
+        return redirect()->route('data-customer.index')
+        ->with(['sucess' => 'Data Customer Berhasil Di Update']);
         }
 
     }
@@ -130,6 +147,6 @@ class customerController extends Controller
     {
         $displaydata = data_customer::all();
         return view('/data-customer/datatables-customer', compact('displaydata'));
-
     }
+
 }

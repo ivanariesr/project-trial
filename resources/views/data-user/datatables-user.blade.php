@@ -34,7 +34,6 @@
            <th scope="col">Nama</th>
            <th scope="col">Username</th>
            <th scope="col">Email</th>
-           <th scope="col">Password</th>
            <th scope="col">Edit</th>
            <th scope="col">Delete</th>
          </tr>
@@ -46,7 +45,6 @@
            <td> {{$dc->name}}</td>
            <td> {{$dc->username}}</td>
            <td> {{$dc->email}}</td>
-           <td> {{$dc->password}}</td>
            <td>
              <a href="{{ route('data-user.edit', $dc->id)}}" target="_parent" class="btn btn-primary">
                Edit

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Models\data_pic;
 
 class picController extends Controller
@@ -36,20 +38,26 @@ class picController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required',
+        $validator = Validator::make($request->all(), [
+            'nama' => 'required|unique:data_pics',
             'posisi' => 'required',
             'no_idp' => 'required'
         ]);
-        $displaydata = data_pic::create($validatedData);
 
-         if ($displaydata) {
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return back()->withInput()->withErrors($validator);
+            // validation failed redirect back to form
+        } else { 
+
+            $PIC = new data_pic;
+            $PIC->nama = $request->nama;
+            $PIC->posisi = $request->posisi;
+            $PIC->no_idp = $request->no_idp;
+            $PIC->save();
+
             return redirect()->route('data-pic.index')
-            ->with(['sucess' => 'Data PIC Berhasil Di Simpan']);
-        }
-        else {
-            return redirect()->route('data-pic.index')
-            ->with(['error' => 'Data PIC Gagal Di Simpan']);
+            ->with(['sucess' => 'Data PIC Berhail Di Simpan']);
         }
     }
 
@@ -85,20 +93,24 @@ class picController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $validatedData = $request->validate([
-            'nama' => 'required',
+        $validator = Validator::make($request->all(), [
+            'nama' => ['required',Rule::unique('data_pics')->ignore($id)],
             'posisi' => 'required',
             'no_idp' => 'required'
         ]);
-        $displaydata = data_pic::whereId($id)->update($validatedData);
 
-         if ($displaydata) {
+        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
+        {
+            return back()->withInput()->withErrors($validator);
+            // validation failed redirect back to form
+        } else { 
+            $PIC = data_pic::find($id);
+            $PIC->nama = $request->nama;
+            $PIC->posisi = $request->posisi;
+            $PIC->no_idp = $request->no_idp;
+            $PIC->save();
             return redirect()->route('data-pic.index')
             ->with(['sucess' => 'Data PIC Berhasil Di Update']);
-        }
-        else {
-            return redirect()->route('data-pic.index')
-            ->with(['error' => 'Data PIC Gagal Di Update']);
         }
     }
 

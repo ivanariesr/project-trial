@@ -35,14 +35,19 @@
                 </div>
                 @endif
 
-                @if (session()->has('error'))
+                @if ($errors->any())
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('error') }}
+                    <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                    </ul>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                       <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 @endif
+                
                 <div class="card-body">
                   <iframe src="{{route('table-customer')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="no">
                 </iframe>
