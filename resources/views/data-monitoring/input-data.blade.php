@@ -32,9 +32,13 @@
                     </div>
                     @endif
     
-                    @if (session()->has('error'))
-                    <div class="alert alert-error alert-dismissible fade show" role="alert">
-                        {{ session('error') }}
+                    @if ($errors->any())
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                        </ul>
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
@@ -63,12 +67,14 @@
                             <div class="form-group col-sm-4">
                                 <label for="tgl_penugasan" class="col-form-label">Tanggal Surat</label>
                                 <input type="date" class="form-control" name="tgl_penugasan" id="tgl_penugasan" placeholder="Tanggal Surat">
+                                <br>
+                                <input type="file" name="dok_penugasan">
                             </div>
                             <div class="form-group col-sm-4">
                                 <label for="rkap" class="col-form-label">RKAP / NON RKAP</label>
                                 <select class="form-control" id="rkap" name="rkap" required>
                                     <optgroup label="RKAP / NON RKAP">
-                                        <option value=""><b>Pilih</b></option>
+                                        <option value="" disabled selected><b>Pilih</b></option>
                                         <option value="RKAP">RKAP</option>
                                         <option value="Non RKAP">Non RKAP</option>
                                     </optgroup>
@@ -84,9 +90,9 @@
                         <div class="form-group row">
                             <div class="form-group col-sm-4">
                                 <label for="prktype" class="col-form-label">Type</label>
-                                <select class="form-control" id="prktype" name="prktype">
+                                <select class="form-control" id="prktype" name="prktype" required>
                                     <optgroup label="PRK / WO">
-                                        <option value=""><b>Pilih</b></option>
+                                        <option value="" disabled selected><b>Pilih</b></option>
                                         <option value="WO">WO</option>
                                         <option value="PRK">PRK</option>
                                     </optgroup>
@@ -95,7 +101,7 @@
                             <div class="form-group col-sm-4">
                                 <label for="no_idc" class="col-form-label">Unit</label>
                                 <select class="form-control" id="no_idc" name="no_idc" required>
-                                    <option value=""><b>Pilih Unit</b></option>
+                                    <option value="" disabled selected><b>Pilih Unit</b></option>
                                     @foreach ($datacust as $dc)
                                     <option value="{{$dc->no_idc}}">{{$dc->unit}}</option>
                                     @endforeach
@@ -173,35 +179,35 @@
                                 <br>
                                 <br>
                                 <label for="kontrak" class="col-form-label">Kontrak</label>
-                                <input type="text" class="form-control" id="kontrak" placeholder="Harga Kontrak">
+                                <input type="text" class="form-control" name="kontrak" id="kontrak" placeholder="KontrakHarga Kontrak">
                                 <br>
                                 <input type="file" name="dok_kontrak">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="pnwrn" class="col-form-label">Penawaran</label>
-                                <input type="text" class="form-control" id="pnwrn" placeholder="Penawaran Harga">
+                                <input type="text" class="form-control" name="pnwrn" id="pnwrn" placeholder="Penawaran Harga">
                                 <br>
                                 <input type="file" name="dok_pnwrn">
                                 <br>
                                 <br>
                                 <label for="tagihan" class="col-form-label">Tagihan</label>
-                                <input type="text" class="form-control" id="tagihan" placeholder="Nilai Tagihan">
+                                <input type="text" class="form-control" name="tagihan" id="tagihan" placeholder="Nilai Tagihan">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="hpp" class="col-form-label">HPP</label>
-                                <input type="text" class="form-control" id="hpp" placeholder="Harga Pokok Produksi">
+                                <input type="text" class="form-control" name="hpp" id="hpp" placeholder="Harga Pokok Produksi">
                                 <br>
                                 <br>
                                 <br>
                                 <label for="terbayar" class="col-form-label" style="">Terbayar</label>
-                                <input type="text" class="form-control" id="terbayar" placeholder="Nilai Terbayar">
+                                <input type="text" class="form-control" name="terbayar" id="terbayar" placeholder="Nilai Terbayar">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="lr" class="col-form-label">L / R</label>
-                                <input type="text" class="form-control" id="lr" placeholder="Laba / Rugi">
+                                <input type="text" class="form-control" name="lr" id="lr" placeholder="Laba / Rugi">
                             </div>
                         </div>
 
@@ -241,26 +247,26 @@
 
                             <div class="form-group col-sm-2">
                                 <label for="noba_kspktn" class="col-form-label">Nomor BAK</label>
-                                <input type="text" class="form-control" id="noba_kspktn" placeholder="Nomor Surat">
+                                <input type="text" class="form-control" name="noba_kspktn" id="noba_kspktn" placeholder="Nomor Surat">
                                 <br>
                                 <input type="file" name="dok_kspktn">
                             </div>
                             
                             <div class="form-group col-sm-2">
                                 <label for="tglk_dok" class="col-form-label">Tanggal BAK</label>
-                                <input type="date" class="form-control" id="tglk_dok" placeholder="Tanggal Mulai Pekerjaan">
+                                <input type="date" class="form-control" name="tglk_dok" id="tglk_dok" placeholder="Tanggal Mulai Pekerjaan">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="noba_pp" class="col-form-label">Nomor BAPP</label>
-                                <input type="text" class="form-control" id="noba_pp" placeholder="Nomor Surat">
+                                <input type="text" class="form-control" name="noba_pp" id="noba_pp" placeholder="Nomor Surat">
                                 <br>
                                 <input type="file" name="dok_pp">
                             </div>
                             
                             <div class="form-group col-sm-2">
                                 <label for="tglp_dok" class="col-form-label">Tanggal BAPP</label>
-                                <input type="date" class="form-control" id="tglp_dok" placeholder="Tanggal Mulai Pekerjaan">
+                                <input type="date" class="form-control" name="tglp_dok" id="tglp_dok" placeholder="Tanggal Mulai Pekerjaan">
                             </div>
 
                             <div class="form-group col-sm-4">
@@ -270,14 +276,14 @@
                             
                             <div class="form-group col-sm-2">
                                 <label for="noba_stp" class="col-form-label">Nomor BASTP</label>
-                                <input type="text" class="form-control" id="noba_stp" placeholder="Nomor Surat">
+                                <input type="text" class="form-control" name="noba_stp" id="noba_stp" placeholder="Nomor Surat">
                                 <br>
                                 <input type="file" name="dok_stp">
                             </div>
                             
                             <div class="form-group col-sm-2">
                                 <label for="tgls_dok" class="col-form-label">Tanggal BASTP</label>
-                                <input type="date" class="form-control" id="tgls_dok" placeholder="Tanggal Mulai Pekerjaan">
+                                <input type="date" class="form-control" name="tgls_dok" id="tgls_dok" placeholder="Tanggal Mulai Pekerjaan">
                             </div>
                         </div>
                         <button type="submit" class="btn btn-primary"><i class="far fa-plus-square"></i> Tambah Data</button>
