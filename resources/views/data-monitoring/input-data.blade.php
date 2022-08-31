@@ -45,7 +45,7 @@
                     </div>
                     @endif
 
-                    <form method="post" action="{{route('data-monitoring.store')}}">
+                    <form method="post" action="{{route('data-monitoring.store')}}" enctype="multipart/form-data">
                         @csrf
 
                         <div class="form-group row">
