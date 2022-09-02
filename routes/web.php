@@ -18,8 +18,6 @@ use App\Http\Middleware\Authenticate;
 */
 
 
-/* Resource Routes User */
-Route::resource('daftar-customer', 'usrCustomerController');
 /* -------------------------------- */
 
 Route::get('/', function () {
@@ -53,6 +51,9 @@ Route::resource('data-user', 'userController');
     Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
     Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');    
     Route::get('/datatables-user', 'userController@listdata')->name('table-user');    
+    Route::get('/datatables-monitoring', 'monitoringController@listdata')->name('table-monitoring');    
+    
+    Route::get('/download/{dok_penugasan}', 'monitoringController@download_ids')->name('download_surat');
 
     Route::post('/do-register', [authController::class,"doRegister"]);
     Route::get('/logout', [authController::class,"logout"]);

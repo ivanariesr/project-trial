@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules\File;
+
 use App\Http\Controllers\Controller;
+
 use App\Models\data_monitoring;
 use App\Models\data_surat;
 use App\Models\data_nilai;
@@ -60,13 +63,13 @@ class monitoringController extends Controller
             'rkap' => 'required',
             'stts_pkerjaan' => 'required',
             'prktype' => 'required',
-            'no_PRKorWO' => 'required',
+            'no_PRKorWO' => 'required|unique:data_monitorings',
             'stts_admin' => 'required',
 
-            'dok_penugasan' => 'nullable|mimes:doc,docx,pdf|max:10000',
-            'dok_kspktn' => 'nullable|mimes:doc,docx,pdf|max:10000',
-            'dok_pp' => 'nullable|mimes:doc,docx,pdf|max:10000',   
-            'dok_stp' => 'nullable|mimes:doc,docx,pdf|max:10000',
+            'dok_penugasan' => 'nullable|mimes:doc,docx,pdf|max:2048',
+            'dok_kspktn' => 'nullable|mimes:doc,docx,pdf|max:5120',
+            'dok_pp' => 'nullable|mimes:doc,docx,pdf|max:5120',   
+            'dok_stp' => 'nullable|mimes:doc,docx,pdf|max:5120',
             'dok_rab' => 'nullable|mimes:doc,docx,xlx,xls,xlsx,pdf|max:10000',
             'dok_pnwrn' => 'nullable|mimes:doc,docx,pdf|max:10000',
             'dok_kontrak' => 'nullable|mimes:doc,docx,pdf|max:10000'
@@ -93,7 +96,8 @@ class monitoringController extends Controller
 
             if ($request->hasFile('dok_kspktn')) {
             $dok_kspktn = date('Ymd-Hi').'_'.$request->file('dok_kspktn')->getClientOriginalName();
-            $path_dokkspktn = $request->file('dok_kspktn')->store('public/files');
+            $dok_kspktn = str_replace(' ', '_', $dok_kspktn);
+            $path_dokkspktn = $request->file('dok_kspktn')->storeAs('public/files', $dok_kspktn);
 
             $Sur->dok_kspktn = $dok_kspktn;
             $Sur->path_dokkspktn = $path_dokkspktn;
@@ -101,7 +105,8 @@ class monitoringController extends Controller
 
             if ($request->hasFile('dok_pp')) {
             $dok_pp = date('Ymd-Hi').'_'.$request->file('dok_pp')->getClientOriginalName();
-            $path_dokpp = $request->file('dok_pp')->store('public/files');
+            $dok_pp = str_replace(' ', '_', $dok_pp);
+            $path_dokpp = $request->file('dok_pp')->storeAs('public/files', $dok_pp);
 
             $Sur->dok_pp = $dok_pp;
             $Sur->path_dokpp = $path_dokpp;
@@ -109,7 +114,8 @@ class monitoringController extends Controller
             
             if ($request->hasFile('dok_stp')) {
             $dok_stp = date('Ymd-Hi').'_'.$request->file('dok_stp')->getClientOriginalName();
-            $path_dokstp = $request->file('dok_stp')->store('public/files');
+            $dok_stp = str_replace(' ', '_', $dok_stp);
+            $path_dokstp = $request->file('dok_stp')->storeAs('public/files', $dok_stp);
             
             $Sur->dok_stp = $dok_stp;
             $Sur->path_dokstp = $path_dokstp;
@@ -117,7 +123,8 @@ class monitoringController extends Controller
             
             if ($request->hasFile('dok_rab')) {
             $dok_rab = date('Ymd-Hi').'_'.$request->file('dok_rab')->getClientOriginalName();
-            $path_dokrab = $request->file('dok_rab')->store('public/files');
+            $dok_rab = str_replace(' ', '_', $dok_rab);
+            $path_dokrab = $request->file('dok_rab')->storeAs('public/files', $dok_rab);
             
             $Nil->dok_rab = $dok_rab;
             $Nil->path_dokrab = $path_dokrab;
@@ -125,7 +132,8 @@ class monitoringController extends Controller
             
             if ($request->hasFile('dok_pnwrn')) {
             $dok_pnwrn = date('Ymd-Hi').'_'.$request->file('dok_pnwrn')->getClientOriginalName();
-            $path_dokpnwrn = $request->file('dok_pnwrn')->store('public/files');
+            $dok_pnwrn = str_replace(' ', '_', $dok_pnwrn);
+            $path_dokpnwrn = $request->file('dok_pnwrn')->storeAs('public/files', $dok_pnwrn);
             
             $Nil->dok_pnwrn = $dok_pnwrn;
             $Nil->path_dokpnwrn = $path_dokpnwrn;
@@ -133,7 +141,8 @@ class monitoringController extends Controller
 
             if ($request->hasFile('dok_kontrak')) {
             $dok_kontrak = date('Ymd-Hi').'_'.$request->file('dok_kontrak')->getClientOriginalName();
-            $path_dokkontrak = $request->file('dok_kontrak')->store('public/files');
+            $dok_kontrak = str_replace(' ', '_', $dok_kontrak);
+            $path_dokkontrak = $request->file('dok_kontrak')->storeAs('public/files', $dok_kontrak);
 
             $Nil->dok_kontrak = $dok_kontrak;
             $Nil->path_dokkontrak = $path_dokkontrak;
@@ -199,9 +208,19 @@ class monitoringController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($no_idm)
     {
-        //
+        $dc = 
+        data_monitoring::join('data_nilais','data_monitorings.no_idn', '=', 'data_nilais.no_idn')
+        ->join('data_surats', 'data_monitorings.no_ids', '=', 'data_surats.no_ids')
+        ->join('data_customers', 'data_monitorings.no_idc', '=', 'data_customers.no_idc')
+        ->where('data_monitorings.no_idm', '=', $no_idm)->get();
+//       
+        $datapic_idpni = data_monitoring::join('data_pics','data_monitorings.no_idpni', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();
+        $datapic_idpre = data_monitoring::join('data_pics','data_monitorings.no_idpre', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();
+        $datapic_idppm = data_monitoring::join('data_pics','data_monitorings.no_idppm', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();
+
+        return view('/data-monitoring/detail-data', compact('dc','datapic_idpni','datapic_idpre','datapic_idppm'));
     }
 
     /**
@@ -233,8 +252,33 @@ class monitoringController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($no_idm)
+    {   
+        $dc = data_monitoring::where('no_idm', $no_idm)->delete();
+        $dc2 = data_nilai::where('no_idn', $no_idm)->delete();
+        $dc3 = data_surat::where('no_ids', $no_idm)->delete();
+
+        dd($dc2);
+        if ($dc && $dc2 && $dc3) {
+            return back()->withInput(['success' => 'Data Customer Berhasil Di Hapus']);;
+        }
+        else {
+            return back()->withInput(['error' => 'Data Customer Gagal Di Hapus']);;
+        }
+    }
+
+    public function listdata(Request $request) 
     {
-        //
+        $displaydata = 
+        data_monitoring::join('data_customers', 'data_monitorings.no_idc', '=', 'data_customers.no_idc')
+        ->get();
+
+        return view('/data-monitoring/datatables-monitoring', compact('displaydata'));
+    }
+
+    public function download_ids($request) 
+    {
+//        $filepath = public_path($request);
+        return Storage::download('public/files',$request);
     }
 }

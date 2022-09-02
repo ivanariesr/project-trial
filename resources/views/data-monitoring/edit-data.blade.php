@@ -4,7 +4,7 @@
 
 @section('drop-monitoring','active')
 
-@section('sdbar-input-monitoring','active')
+@section('sdbar-list-monitoring','active')
 
 @section('content-judul','Data Monitoring')
 
@@ -49,56 +49,28 @@
                         @csrf
 
                         <div class="form-group row">
-                          <label for="penugasan" class="col-sm-2 col-form-label"><h6>[PENUGASAN]</h6></label>
-                          <label for="customer" class="col-sm-5 col-form-label"><h6>[CUSTOMER]</h6></label>
-                          <label for="woprk" class="col-sm-4 col-form-label"><h6>[WO /PRK]</h6></label>
+                          <label for="penugasan" class="col-sm-12 col-form-label"><h6>[PENUGASAN]</h6></label>
                         </div>
 
                         <div class="form-group row">
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-4">
                                 <label for="no_penugasan" class="col-form-label">No Surat</label>
                                 <input type="text" class="form-control" name="no_penugasan" id="no_penugasan" placeholder="Nomor Surat">
                                 <input type="text" class="form-control" name="no_ids" id="no_ids" placeholder="Nomor ID Surat" hidden>
                             </div>
-
-                            <div class="form-group col-sm-5">
+                            <div class="form-group col-sm-8">
                                 <label for="nm_pekerjaan" class="col-form-label">Nama Pekerjaan</label>
                                 <input type="text" class="form-control" name="nm_pekerjaan" id="nm_pekerjaan" placeholder="Nama Pekerjaan" required>
                                 <input type="text" class="form-control" name="no_idm" id="no_idm" placeholder="Nomor ID Monitoring" hidden>
                             </div>
 
-                            <div class="form-group col-sm-2">
-                                <label for="prktype" class="col-form-label">Type</label>
-                                <select class="form-control" id="prktype" name="prktype" required>
-                                    <optgroup label="PRK / WO">
-                                        <option value="" disabled selected><b>Pilih</b></option>
-                                        <option value="WO">WO</option>
-                                        <option value="PRK">PRK</option>
-                                    </optgroup>
-                                </select>
-                            </div>
-
-                            <div class="form-group col-sm-2">
-                                <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO</label>
-                                <input type="text" class="form-control" name="no_PRKorWO" id="no_PRKorWO" placeholder="Input Nomor PRK / WO">
-                            </div>
-
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-4">
                                 <label for="tgl_penugasan" class="col-form-label">Tanggal Surat</label>
                                 <input type="date" class="form-control" name="tgl_penugasan" id="tgl_penugasan" placeholder="Tanggal Surat">
                                 <br>
                                 <input type="file" name="dok_penugasan">
                             </div>
-                            <div class="form-group col-sm-3">
-                                <label for="no_idc" class="col-form-label">Unit</label>
-                                <select class="form-control" id="no_idc" name="no_idc" required>
-                                    <option value="" disabled selected><b>Pilih Unit</b></option>
-                                    @foreach ($datacust as $dc)
-                                    <option value="{{$dc->no_idc}}">{{$dc->unit}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-4">
                                 <label for="rkap" class="col-form-label">RKAP / NON RKAP</label>
                                 <select class="form-control" id="rkap" name="rkap" required>
                                     <optgroup label="RKAP / NON RKAP">
@@ -108,12 +80,52 @@
                                     </optgroup>
                                 </select>
                             </div>
+                        </div>
 
+                        <div class="form-group row">
+                            <label for="woprk" class="col-sm-4 col-form-label"><h6>[WO /PRK]</h6></label>
+                            <label for="customer" class="col-sm-8 col-form-label"><h6>[CUSTOMER]</h6></label>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="form-group col-sm-4">
+                                <label for="prktype" class="col-form-label">Type</label>
+                                <select class="form-control" id="prktype" name="prktype" required>
+                                    <optgroup label="PRK / WO">
+                                        <option value="" disabled selected><b>Pilih</b></option>
+                                        <option value="WO">WO</option>
+                                        <option value="PRK">PRK</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-4">
+                                <label for="no_idc" class="col-form-label">Unit</label>
+                                <select class="form-control" id="no_idc" name="no_idc" required>
+                                    <option value="" disabled selected><b>Pilih Unit</b></option>
+                                    @foreach ($datacust as $dc)
+                                    <option value="{{$dc->no_idc}}">{{$dc->unit}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                                <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO</label>
+                                <input type="text" class="form-control" name="no_PRKorWO" id="no_PRKorWO" placeholder="Input Nomor PRK / WO">
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                            </div>
+
+                            <div class="form-group col-sm-4">
+                            </div>
                         </div>
 
                         <div class="form-group row">
                             <label for="pelpekerjaan" class="col-sm-4 col-form-label"><h6>[PELAKSANAAN PEKERJAAN]</h6></label>
-                            <label for="nilai" class="col-sm-8 col-form-label"><h6>[NILAI PEKERJAAN]</h6></label>
+                            <label for="nilai" class="col-sm-8 col-form-label"><h6>[NILAI INCLUDE PPN]</h6></label>
                         </div>
 
                         <div class="form-group row">
@@ -201,7 +213,7 @@
 
                         <div class="form-group row">
                                 <label for="PIC" class="col-sm-4 col-form-label"><h6>[PIC]</h6></label>
-                                <label for="Datasurat" class="col-sm-4 col-form-label"><h6>[DATA SURAT]</h6></label>
+                                <label for="Datasurat" class="col-sm-4 col-form-label"><h6>[Data Surat]</h6></label>
                         </div>
 
                         <div class=row>
