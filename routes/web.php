@@ -17,7 +17,6 @@ use App\Http\Middleware\Authenticate;
 |
 */
 
-
 /* -------------------------------- */
 
 Route::get('/', function () {
@@ -46,14 +45,14 @@ Route::resource('data-monitoring', 'monitoringController');
 Route::resource('data-pic', 'picController');
 Route::resource('data-user', 'userController');
 /* -------------------------------- */
-
+//    Route::patch('/data-monitoring/update/{id}', 'monitoringController@update')->name('update-monitoring');
     Route::get('/dashboard', [authController::class,"dashboard"]);
     Route::get('/datatables-customer', 'customerController@listdata')->name('table-customer');
     Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');    
     Route::get('/datatables-user', 'userController@listdata')->name('table-user');    
     Route::get('/datatables-monitoring', 'monitoringController@listdata')->name('table-monitoring');    
     
-    Route::get('/download/{dok_penugasan}', 'monitoringController@download_ids')->name('download_surat');
+    Route::get('/download/{request}', 'monitoringController@download_file')->name('download_file');
 
     Route::post('/do-register', [authController::class,"doRegister"]);
     Route::get('/logout', [authController::class,"logout"]);

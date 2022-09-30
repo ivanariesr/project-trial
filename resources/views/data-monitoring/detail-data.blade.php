@@ -21,7 +21,12 @@
             <div class="card card-info">
                 <div class="card-header">
                     <h4>Detail Data Monitoring Proyek</h4>
+                    <a href="{{ route('data-monitoring.edit', $dc[0]->no_idm)}}" target="_parent">
+                        <button class="btn btn-primary pull-right" style="margin-left: 20px;"> Edit </button>
+                    </a>
+    
                 </div>
+                
                 <div class="card-body">
 
                     @if (session()->has('sucess'))
@@ -85,7 +90,7 @@
                                     <tr>
                                         <td>Surat Penugasan</td>
                                         <td>&nbsp;:</td>
-                                        <td>&nbsp;<a href="{{route('download_surat', $dc[0]->dok_penugasan)}}" target="_parent">{{$dc[0]->dok_penugasan}}</a></td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_penugasan)}}" target="_parent">{{$dc[0]->dok_penugasan}}</a></td>
                                         <td>RKAP / NON</td>
                                         <td>&nbsp;:</td>
                                         <td>&nbsp;{{$dc[0]->rkap}}</td>
@@ -121,10 +126,10 @@
                                         <td>&nbsp;{{$dc[0]->stts_pkerjaan}}</td>
                                         <td>RAB Dasar</td>
                                         <td>&nbsp;:</td>
-                                        <td>&nbsp;{{$dc[0]->rab}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_rab)}}" target="_parent">{{$dc[0]->rab}}</a></td>
                                         <td>Penawaran</td>
                                         <td>: </td>
-                                        <td>&nbsp;{{$dc[0]->pnwrn}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_pnwrn)}}" target="_parent">{{$dc[0]->pnwrn}}</a></td>
                                     </tr>
                                     <tr>
                                         <td>Status Admin</td>
@@ -146,7 +151,7 @@
                                         <td>&nbsp;{{$dc[0]->tagihan}}</td>
                                         <td>Kontrak</td>
                                         <td>: </td>
-                                        <td>&nbsp;{{$dc[0]->kontrak}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_kontrak)}}" target="_parent">{{$dc[0]->kontrak}}</a></td>
                                     </tr>
                                     <tr>
                                         <td>Tanggal Akhir</td>
@@ -187,7 +192,7 @@
                                         <td>&nbsp;{{$datapic_idppm[0]->nama}}</td>
                                         <td>Nomor BAK</td>
                                         <td>:</td>
-                                        <td>&nbsp;{{$dc[0]->noba_kspktn}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_kspktn)}}" target="_parent">{{$dc[0]->noba_kspktn}}</a></td>
                                         <td>Tanggal BAK</td>
                                         <td>:</td>
                                         <td>&nbsp;{{$dc[0]->tglk_dok}}</td>
@@ -198,7 +203,7 @@
                                         <td>&nbsp;{{$datapic_idpni[0]->nama}}</td>
                                         <td>Nomor BAPP</td>
                                         <td>:</td>
-                                        <td>&nbsp;{{$dc[0]->noba_pp}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_pp)}}" target="_parent">{{$dc[0]->noba_pp}}</a></td>
                                         <td>Tanggal BAPP</td>
                                         <td>:</td>
                                         <td>&nbsp;{{$dc[0]->tglp_dok}}</td>
@@ -209,7 +214,7 @@
                                         <td>&nbsp;{{$datapic_idpre[0]->nama}}</td>
                                         <td>Nomor BASTP</td>
                                         <td>:</td>
-                                        <td>&nbsp;{{$dc[0]->noba_stp}}</td>
+                                        <td>&nbsp;<a href="{{route('download_file', $dc[0]->dok_stp)}}" target="_parent">{{$dc[0]->noba_stp}}</a></td>
                                         <td>Tanggal BASTP</td>
                                         <td>:</td>
                                         <td>&nbsp;{{$dc[0]->tgls_dok}}</td>

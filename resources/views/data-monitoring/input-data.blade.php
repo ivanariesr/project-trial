@@ -61,14 +61,14 @@
                                 <input type="text" class="form-control" name="no_ids" id="no_ids" placeholder="Nomor ID Surat" hidden>
                             </div>
 
-                            <div class="form-group col-sm-5">
-                                <label for="nm_pekerjaan" class="col-form-label">Nama Pekerjaan</label>
+                            <div class="form-group col-sm-5">   
+                                <label for="nm_pekerjaan" class="col-form-label">Nama Pekerjaan <i style="color:red">(*Required</i></label>
                                 <input type="text" class="form-control" name="nm_pekerjaan" id="nm_pekerjaan" placeholder="Nama Pekerjaan" required>
                                 <input type="text" class="form-control" name="no_idm" id="no_idm" placeholder="Nomor ID Monitoring" hidden>
                             </div>
 
                             <div class="form-group col-sm-2">
-                                <label for="prktype" class="col-form-label">Type</label>
+                                <label for="prktype" class="col-form-label">Type <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="prktype" name="prktype" required>
                                     <optgroup label="PRK / WO">
                                         <option value="" disabled selected><b>Pilih</b></option>
@@ -79,7 +79,7 @@
                             </div>
 
                             <div class="form-group col-sm-2">
-                                <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO</label>
+                                <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO <i style="color:red">(*Required</i></label>
                                 <input type="text" class="form-control" name="no_PRKorWO" id="no_PRKorWO" placeholder="Input Nomor PRK / WO">
                             </div>
 
@@ -87,10 +87,10 @@
                                 <label for="tgl_penugasan" class="col-form-label">Tanggal Surat</label>
                                 <input type="date" class="form-control" name="tgl_penugasan" id="tgl_penugasan" placeholder="Tanggal Surat">
                                 <br>
-                                <input type="file" name="dok_penugasan">
+                                <input type="file" name="dok_penugasan"> [doc,docx,pdf]
                             </div>
                             <div class="form-group col-sm-3">
-                                <label for="no_idc" class="col-form-label">Unit</label>
+                                <label for="no_idc" class="col-form-label">Unit <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="no_idc" name="no_idc" required>
                                     <option value="" disabled selected><b>Pilih Unit</b></option>
                                     @foreach ($datacust as $dc)
@@ -99,7 +99,7 @@
                                 </select>
                             </div>
                             <div class="form-group col-sm-2">
-                                <label for="rkap" class="col-form-label">RKAP / NON RKAP</label>
+                                <label for="rkap" class="col-form-label">RKAP / NON RKAP <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="rkap" name="rkap" required>
                                     <optgroup label="RKAP / NON RKAP">
                                         <option value="" disabled selected><b>Pilih</b></option>
@@ -118,7 +118,7 @@
 
                         <div class="form-group row">
                             <div class="form-group col-sm-4">
-                                <label for="stts_pkerjaan" class="col-form-label">Status Pekerjaan</label>
+                                <label for="stts_pkerjaan" class="col-form-label">Status Pekerjaan <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="stts_pkerjaan" name="stts_pkerjaan" required>
                                     <optgroup label="Status Pekerjaan">
                                         <option value=""><b>Pilih Status</b></option>
@@ -129,7 +129,7 @@
                                     </optgroup>
                                 </select>
 
-                                <label for="stts_admin" class="col-form-label">Status Admin</label>
+                                <label for="stts_admin" class="col-form-label">Status Admin <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="stts_pkerjaan" name="stts_admin" required>
                                     <optgroup label="Status Admin">
                                         <option value=""><b>Pilih Status</b></option>
@@ -163,20 +163,20 @@
                                 <label for="rab" class="col-form-label">RAB Dasar</label>
                                 <input type="text" class="form-control" name="rab" id="rab" placeholder="RAB Dasar">
                                 <br>
-                                <input type="file" name="dok_rab">
+                                <input type="file" name="dok_rab"> [doc,docx,xlx,xls,xlsx,pdf]
                                 <br>
                                 <br>
                                 <label for="kontrak" class="col-form-label">Kontrak</label>
-                                <input type="text" class="form-control" name="kontrak" id="kontrak" placeholder="KontrakHarga Kontrak">
-                                <br>
-                                <input type="file" name="dok_kontrak">
+                                <input type="text" class="form-control" name="kontrak" id="kontrak" placeholder="Harga Kontrak">
+                                <br> 
+                                <input type="file" name="dok_kontrak"> [doc,docx,pdf]
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="pnwrn" class="col-form-label">Penawaran</label>
                                 <input type="text" class="form-control" name="pnwrn" id="pnwrn" placeholder="Penawaran Harga">
                                 <br>
-                                <input type="file" name="dok_pnwrn">
+                                <input type="file" name="dok_pnwrn"> [doc,docx,pdf]
                                 <br>
                                 <br>
                                 <label for="tagihan" class="col-form-label">Tagihan</label>
@@ -186,6 +186,7 @@
                             <div class="form-group col-sm-2">
                                 <label for="hpp" class="col-form-label">HPP</label>
                                 <input type="text" class="form-control" name="hpp" id="hpp" placeholder="Harga Pokok Produksi">
+                                <br>
                                 <br>
                                 <br>
                                 <br>
@@ -206,7 +207,7 @@
 
                         <div class=row>
                             <div class="form-group col-sm-2">
-                                <label for="no_idppm" class="col-form-label">Project Manager</label>
+                                <label for="no_idppm" class="col-form-label">Project Manager <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="no_idppm" name="no_idppm" required>
                                     <option value=""><b>Pilih PM</b></option>
                                     @foreach ($datapic_idppm as $dp3)
@@ -214,7 +215,7 @@
                                     @endforeach
                                 </select>
                                 <br>
-                                <label for="no_idpre" class="col-form-label">Rendal</label>
+                                <label for="no_idpre" class="col-form-label">Rendal <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="no_idpre" name="no_idpre" required>
                                     <option value=""><b>Pilih Rendal</b></option>
                                     @foreach ($datapic_idpre as $dp2)
@@ -224,7 +225,7 @@
                             </div>
 
                             <div class="form-group col-sm-2">
-                                <label for="no_idpni" class="col-form-label">Niaga</label>
+                                <label for="no_idpni" class="col-form-label">Niaga <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="no_idpni" name="no_idpni" required>
                                     <option value=""><b>Pilih Niaga</b></option>
                                     @foreach ($datapic_idpni as $dp1)
@@ -237,7 +238,7 @@
                                 <label for="noba_kspktn" class="col-form-label">Nomor BAK</label>
                                 <input type="text" class="form-control" name="noba_kspktn" id="noba_kspktn" placeholder="Nomor Surat">
                                 <br>
-                                <input type="file" name="dok_kspktn">
+                                <input type="file" name="dok_kspktn"> [doc,docx,pdf]
                             </div>
                             
                             <div class="form-group col-sm-2">
@@ -249,7 +250,7 @@
                                 <label for="noba_pp" class="col-form-label">Nomor BAPP</label>
                                 <input type="text" class="form-control" name="noba_pp" id="noba_pp" placeholder="Nomor Surat">
                                 <br>
-                                <input type="file" name="dok_pp">
+                                <input type="file" name="dok_pp"> [doc,docx,pdf]
                             </div>
                             
                             <div class="form-group col-sm-2">
@@ -266,7 +267,7 @@
                                 <label for="noba_stp" class="col-form-label">Nomor BASTP</label>
                                 <input type="text" class="form-control" name="noba_stp" id="noba_stp" placeholder="Nomor Surat">
                                 <br>
-                                <input type="file" name="dok_stp">
+                                <input type="file" name="dok_stp"> [doc,docx,pdf]
                             </div>
                             
                             <div class="form-group col-sm-2">

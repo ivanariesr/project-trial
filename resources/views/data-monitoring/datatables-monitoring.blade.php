@@ -52,7 +52,7 @@
            <td> {{$dc->stts_pkerjaan}}</td> 
            <td> {{$dc->stts_admin}}</td> 
            <td>
-             <a href="{{ route('data-customer.edit', $dc->id)}}" target="_parent" class="btn btn-primary">
+             <a href="{{ route('data-monitoring.edit', $dc->no_idm)}}" target="_parent" class="btn btn-primary">
                Edit
              </a>
            </td>
