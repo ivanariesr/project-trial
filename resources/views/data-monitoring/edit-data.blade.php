@@ -48,7 +48,7 @@
 
                     <form method="post" action="{{route('data-monitoring.update', $idm[0]->id)}}" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
+                        @method('PATCH')
                         <div class="form-group row">
                           <label for="penugasan" class="col-sm-2 col-form-label"><h6>[PENUGASAN]</h6></label>
                           <label for="customer" class="col-sm-5 col-form-label"><h6>[CUSTOMER]</h6></label>

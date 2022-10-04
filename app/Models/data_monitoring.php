@@ -12,7 +12,6 @@ class data_monitoring extends Model
         'no_idm',
         'no_idn',
         'no_idc',
-        'no_idpre',
         'no_ids',
         'nm_pekerjaan',
         'rkap',

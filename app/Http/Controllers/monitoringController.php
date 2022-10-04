@@ -298,100 +298,109 @@ class monitoringController extends Controller
             return back()->withInput()->withErrors($validator);
         }
         else {
-
+/*
             $Mon = data_monitoring::find($id)->first()->fill($request->all())->save();
             $Sur = data_surat::findOrFail($no_ids)->first()->fill($request->all())->save();
             $Nil = data_nilai::findOrFail($no_idn)->first()->fill($request->all())->save();
+*/
+            $Mon = data_monitoring::find($id);
+            $Sur = data_surat::find($no_ids);
+            $Nil = data_nilai::find($no_idn);
 
-            if ($request->hasFile('dok_penugasan')) {
-            $dok_penugasan = date('Ymd-Hi').'_'.$request->file('dok_penugasan')->getClientOriginalName();
-            $dok_penugasan = str_replace(' ', '_', $dok_penugasan);
-            $request->file('dok_penugasan')->storeAs('public/files', $dok_penugasan);
-            
-            $Sur->dok_penugasan = $dok_penugasan;
-            }
+//            $Sur = data_surat::where('id', $no_ids)->first();
+//            $Nil = data_nilai::where('id', $no_idn)->first();
 
-            else {
-                $Sur->dok_penugasan = '-';
-            }
+//            dd($Mon,$Sur,$Nil);
 
-            if ($request->hasFile('dok_kspktn')) {
-            $dok_kspktn = date('Ymd-Hi').'_'.$request->file('dok_kspktn')->getClientOriginalName();
-            $dok_kspktn = str_replace(' ', '_', $dok_kspktn);
-            $request->file('dok_kspktn')->storeAs('public/files', $dok_kspktn);
+                if ($request->hasFile('dok_penugasan')) {
+                $dok_penugasan = date('Ymd-Hi').'_'.$request->file('dok_penugasan')->getClientOriginalName();
+                $dok_penugasan = str_replace(' ', '_', $dok_penugasan);
+                $request->file('dok_penugasan')->storeAs('public/files', $dok_penugasan);
 
-            $Sur->dok_kspktn = $dok_kspktn;
-            }
+                $Sur[0]->dok_penugasan = $dok_penugasan;
+                }
 
-            else {
-            $Sur->dok_kspktn = '-';
-            }
+                else {
+                    $Sur[0]->dok_penugasan = '-';
+                }
 
-            if ($request->hasFile('dok_pp')) {
-            $dok_pp = date('Ymd-Hi').'_'.$request->file('dok_pp')->getClientOriginalName();
-            $dok_pp = str_replace(' ', '_', $dok_pp);
-            $request->file('dok_pp')->storeAs('public/files', $dok_pp);
+                if ($request->hasFile('dok_kspktn')) {
+                $dok_kspktn = date('Ymd-Hi').'_'.$request->file('dok_kspktn')->getClientOriginalName();
+                $dok_kspktn = str_replace(' ', '_', $dok_kspktn);
+                $request->file('dok_kspktn')->storeAs('public/files', $dok_kspktn);
 
-            $Sur->dok_pp = $dok_pp;
-            }
-            
-            else{
-                $Sur->dok_pp = '-';
-            }
+                $Sur[0]->dok_kspktn = $dok_kspktn;
+                }
 
-            if ($request->hasFile('dok_stp')) {
-            $dok_stp = date('Ymd-Hi').'_'.$request->file('dok_stp')->getClientOriginalName();
-            $dok_stp = str_replace(' ', '_', $dok_stp);
-            $request->file('dok_stp')->storeAs('public/files', $dok_stp);
-            
-            $Sur->dok_stp = $dok_stp;
-            }
-            
-            else {
-                $Sur->dok_stp = '-';
-            }
-            
-            if ($request->hasFile('dok_rab')) {
-            $dok_rab = date('Ymd-Hi').'_'.$request->file('dok_rab')->getClientOriginalName();
-            $dok_rab = str_replace(' ', '_', $dok_rab);
-            $request->file('dok_rab')->storeAs('public/files', $dok_rab);
-            
-            $Nil->dok_rab = $dok_rab;
-            }
-            
-            else {
-                $Nil->dok_rab = '-';
-            }
+                else {
+                $Sur[0]->dok_kspktn = '-';
+                }
 
-            if ($request->hasFile('dok_pnwrn')) {
-            $dok_pnwrn = date('Ymd-Hi').'_'.$request->file('dok_pnwrn')->getClientOriginalName();
-            $dok_pnwrn = str_replace(' ', '_', $dok_pnwrn);
-            $request->file('dok_pnwrn')->storeAs('public/files', $dok_pnwrn);
-            
-            $Nil->dok_pnwrn = $dok_pnwrn;
-            }
+                if ($request->hasFile('dok_pp')) {
+                $dok_pp = date('Ymd-Hi').'_'.$request->file('dok_pp')->getClientOriginalName();
+                $dok_pp = str_replace(' ', '_', $dok_pp);
+                $request->file('dok_pp')->storeAs('public/files', $dok_pp);
 
-            else {
-            $Nil->dok_pnwrn = '-';
-            }
+                $Sur[0]->dok_pp = $dok_pp;
+                }
+                
+                else{
+                    $Sur[0]->dok_pp = '-';
+                }
 
-            if ($request->hasFile('dok_kontrak')) {
-            $dok_kontrak = date('Ymd-Hi').'_'.$request->file('dok_kontrak')->getClientOriginalName();
-            $dok_kontrak = str_replace(' ', '_', $dok_kontrak);
-            $request->file('dok_kontrak')->storeAs('public/files', $dok_kontrak);
+                if ($request->hasFile('dok_stp')) {
+                $dok_stp = date('Ymd-Hi').'_'.$request->file('dok_stp')->getClientOriginalName();
+                $dok_stp = str_replace(' ', '_', $dok_stp);
+                $request->file('dok_stp')->storeAs('public/files', $dok_stp);
+                
+                $Sur[0]->dok_stp = $dok_stp;
+                }
+                
+                else {
+                    $Sur[0]->dok_stp = '-';
+                }
+                
+                if ($request->hasFile('dok_rab')) {
+                $dok_rab = date('Ymd-Hi').'_'.$request->file('dok_rab')->getClientOriginalName();
+                $dok_rab = str_replace(' ', '_', $dok_rab);
+                $request->file('dok_rab')->storeAs('public/files', $dok_rab);
+                
+                $Nil[0]->dok_rab = $dok_rab;
+                }
+                
+                else {
+                    $Nil[0]->dok_rab = '-';
+                }
 
-            $Nil->dok_kontrak = $dok_kontrak;
-            }
-            else {
-            $Nil->dok_kontrak = '-';
-            }
+                if ($request->hasFile('dok_pnwrn')) {
+                $dok_pnwrn = date('Ymd-Hi').'_'.$request->file('dok_pnwrn')->getClientOriginalName();
+                $dok_pnwrn = str_replace(' ', '_', $dok_pnwrn);
+                $request->file('dok_pnwrn')->storeAs('public/files', $dok_pnwrn);
+                
+                $Nil[0]->dok_pnwrn = $dok_pnwrn;
+                }
+
+                else {
+                    $Nil[0]->dok_pnwrn = '-';
+                }
+
+                if ($request->hasFile('dok_kontrak')) {
+                $dok_kontrak = date('Ymd-Hi').'_'.$request->file('dok_kontrak')->getClientOriginalName();
+                $dok_kontrak = str_replace(' ', '_', $dok_kontrak);
+                $request->file('dok_kontrak')->storeAs('public/files', $dok_kontrak);
+
+                $Nil[0]->dok_kontrak = $dok_kontrak;
+                }
+                else {
+                    $Nil[0]->dok_kontrak = '-';
+                }
 /*
             $Mon = data_monitoring::create($request->all());
             $Sur = data_surat::create($request->all());
             $Nil = data_nilai::create($request->all());
   */        
 //            dd($request, $id, $no_ids, $no_idn, $Mon, $Sur, $Nil);
-$Mon->update([
+/* $Mon->update([
             'no_idm' => $request->no_idm,
             'no_idn' => $request->no_idn,
             'no_idc' => $request->no_idc,
@@ -413,25 +422,73 @@ $Mon->update([
 $Sur->update([
             'no_ids' => $request->no_ids,
             'no_penugasan' => $request->no_penugasan,
+            'dok_penugasan' => $request->$nmdok_penugasan,
             'tgl_penugasan' => $request->tgl_penugasan,            
+            'dok_kspktn' => $request->$nmdok_kspktn,
             'noba_kspktn' => $request->noba_kspktn,
             'tglk_dok' => $request->tglk_dok,
+            'dok_pp' => $request->$nmdok_pp,
             'noba_pp' => $request->noba_pp,
             'tglp_dok' => $request->tglp_dok,
+            'dok_stp'   => $request->$nmdok_stp,
             'noba_stp' => $request->noba_stp,
-            'tgls_dok' => $request->tgls_dok
+            'tgls_dok' => $request->tgls_dok,
         ]);
 
 $Nil->update([
             'no_idn' => $request->no_idn,
+            'dok_rab' => $request->$nmdok_rab,
             'rab' => $request->rab,
+            'dok_pnwrn' => $request->$nmdok_pnwrn,
             'pnwrn' => $request->pnwrn,
             'hpp' => $request->hpp,
             'lr' => $request->lr,
+            'dok_kontrak' => $request->$nmdok_kontrak,
             'kontrak' => $request->kontrak,
             'tagihan' => $request->tagihan,
             'terbayar' => $request->terbayar
         ]);
+*/          
+
+            $Mon->no_idm = $request->no_idm;
+            $Mon->no_idn = $request->no_idn;
+            $Mon->no_idc = $request->no_idc;
+            $Mon->no_idpre = $request->no_idpre;
+            $Mon->no_idpni = $request->no_idpni;
+            $Mon->no_idppm = $request->no_idppm;
+            $Mon->no_ids = $request->no_ids;
+            $Mon->prktype = $request->prktype;
+            $Mon->no_PRKorWO = $request->no_PRKorWO;
+            $Mon->nm_pekerjaan = $request->nm_pekerjaan;
+            $Mon->rkap = $request->rkap;
+            $Mon->stts_pkerjaan = $request->stts_pkerjaan;
+            $Mon->tgl_mulai = $request->tgl_mulai;
+            $Mon->tgl_akhir = $request->tgl_akhir;
+            $Mon->stts_admin = $request->stts_admin;
+            $Mon->ket_progress = $request->ket_progress;
+
+            $Sur[0]->no_ids = $request->no_ids;
+            $Sur[0]->no_penugasan = $request->no_penugasan;
+            $Sur[0]->tgl_penugasan = $request->tgl_penugasan;         
+            $Sur[0]->noba_kspktn = $request->noba_kspktn;
+            $Sur[0]->tglk_dok = $request->tglk_dok;
+            $Sur[0]->noba_pp = $request->noba_pp;
+            $Sur[0]->tglp_dok = $request->tglp_dok;
+            $Sur[0]->noba_stp = $request->noba_stp;
+            $Sur[0]->tgls_dok = $request->tgls_dok;
+
+            $Nil[0]->no_idn = $request->no_idn;
+            $Nil[0]->rab = $request->rab;
+            $Nil[0]->pnwrn = $request->pnwrn;
+            $Nil[0]->hpp = $request->hpp;
+            $Nil[0]->lr = $request->lr;
+            $Nil[0]->kontrak = $request->kontrak;
+            $Nil[0]->tagihan = $request->tagihan;
+            $Nil[0]->terbayar = $request->terbayar;
+            
+            $Sur[0]->save();
+            $Nil[0]->save();
+            $Mon->save();
 
             return redirect()->route('data-monitoring.index')
             ->with(['sucess' => 'Data Monitoring Berhasil Di Update']);
