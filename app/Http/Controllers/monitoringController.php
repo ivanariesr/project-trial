@@ -320,10 +320,6 @@ class monitoringController extends Controller
                 $Sur[0]->dok_penugasan = $dok_penugasan;
                 }
 
-                else {
-                    $Sur[0]->dok_penugasan = '-';
-                }
-
                 if ($request->hasFile('dok_kspktn')) {
                 $dok_kspktn = date('Ymd-Hi').'_'.$request->file('dok_kspktn')->getClientOriginalName();
                 $dok_kspktn = str_replace(' ', '_', $dok_kspktn);
@@ -332,9 +328,6 @@ class monitoringController extends Controller
                 $Sur[0]->dok_kspktn = $dok_kspktn;
                 }
 
-                else {
-                $Sur[0]->dok_kspktn = '-';
-                }
 
                 if ($request->hasFile('dok_pp')) {
                 $dok_pp = date('Ymd-Hi').'_'.$request->file('dok_pp')->getClientOriginalName();
@@ -342,10 +335,6 @@ class monitoringController extends Controller
                 $request->file('dok_pp')->storeAs('public/files', $dok_pp);
 
                 $Sur[0]->dok_pp = $dok_pp;
-                }
-                
-                else{
-                    $Sur[0]->dok_pp = '-';
                 }
 
                 if ($request->hasFile('dok_stp')) {
@@ -355,11 +344,7 @@ class monitoringController extends Controller
                 
                 $Sur[0]->dok_stp = $dok_stp;
                 }
-                
-                else {
-                    $Sur[0]->dok_stp = '-';
-                }
-                
+                                
                 if ($request->hasFile('dok_rab')) {
                 $dok_rab = date('Ymd-Hi').'_'.$request->file('dok_rab')->getClientOriginalName();
                 $dok_rab = str_replace(' ', '_', $dok_rab);
@@ -368,10 +353,6 @@ class monitoringController extends Controller
                 $Nil[0]->dok_rab = $dok_rab;
                 }
                 
-                else {
-                    $Nil[0]->dok_rab = '-';
-                }
-
                 if ($request->hasFile('dok_pnwrn')) {
                 $dok_pnwrn = date('Ymd-Hi').'_'.$request->file('dok_pnwrn')->getClientOriginalName();
                 $dok_pnwrn = str_replace(' ', '_', $dok_pnwrn);
@@ -380,19 +361,12 @@ class monitoringController extends Controller
                 $Nil[0]->dok_pnwrn = $dok_pnwrn;
                 }
 
-                else {
-                    $Nil[0]->dok_pnwrn = '-';
-                }
-
                 if ($request->hasFile('dok_kontrak')) {
                 $dok_kontrak = date('Ymd-Hi').'_'.$request->file('dok_kontrak')->getClientOriginalName();
                 $dok_kontrak = str_replace(' ', '_', $dok_kontrak);
                 $request->file('dok_kontrak')->storeAs('public/files', $dok_kontrak);
 
                 $Nil[0]->dok_kontrak = $dok_kontrak;
-                }
-                else {
-                    $Nil[0]->dok_kontrak = '-';
                 }
 /*
             $Mon = data_monitoring::create($request->all());
