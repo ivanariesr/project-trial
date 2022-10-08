@@ -11,7 +11,7 @@
                 <h4>List Data Proyek</h4>
             </div>
             <div class="card-body">
-
+              <?php $number=1; ?>
                 <table class="table table-bordered" id="users-table">
                        <thead class="thead-dark">
                         <tr>

@@ -51,7 +51,7 @@
                     </div>
                     @endif
                     <div class="form-group row">
-                        <table class="table table-striped table-hover">
+                        <table class="table table-striped table-hover" style="font-size: 14px;">
                             <tbody>
                                 <tbody>
                                     <tr>

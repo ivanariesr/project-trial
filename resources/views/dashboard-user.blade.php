@@ -8,7 +8,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Grafik Proyek</h4>
+                    <h4>Nilai Kontrak Tahunan</h4>
                 </div>
                 <div class="card-body">
                     
@@ -20,7 +20,7 @@
             <div class="col-12 col-md-6 col-lg-6">
                 <div class="card">
                 <div class="card-header">
-                    <h4>Grafik Custommer</h4>
+                    <h4>Proyek Deadline 2022 (Rencana Selesai)</h4>
                 </div>
                 <div class="card-body">
 

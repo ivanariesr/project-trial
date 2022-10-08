@@ -78,7 +78,7 @@
                                 </select>
                             </div>
 
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-3">
                                 <label for="no_PRKorWO" class="col-form-label">Nomor PRK / WO <i style="color:red">(*Required</i></label>
                                 <input type="text" class="form-control" name="no_PRKorWO" id="no_PRKorWO" placeholder="Input Nomor PRK / WO">
                             </div>
@@ -98,7 +98,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="form-group col-sm-2">
+                            <div class="form-group col-sm-3">
                                 <label for="rkap" class="col-form-label">RKAP / NON RKAP <i style="color:red">(*Required</i></label>
                                 <select class="form-control" id="rkap" name="rkap" required>
                                     <optgroup label="RKAP / NON RKAP">
@@ -142,9 +142,7 @@
                                         <option value="Kesepakatan Harga">Kesepakatan Harga</option>
                                         <option value="BA Kesepakatan">BA Kesepakatan</option>
                                         <option value="Kontrak">Kontrak</option>
-                                        <option value="Amandemen">Amandemen</option>
                                         <option value="Laporan / BA">Laporan / BA</option>
-                                        <option value="Termin / Retensi">Termin / Retensi</option>
                                         <option value="Tagihan">Tagihan</option>
                                         <option value="Terbayar">Terbayar</option>
                                         <option value="Cancel">Cancel</option>

@@ -43,7 +43,7 @@
                 </div>
                 @endif
                 <div class="card-body">
-                    <base target="_parent"><iframe src="{{route('table-user')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="no">
+                    <base target="_parent"><iframe src="{{route('table-user')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="yes">
                 </iframe>
                 
                 </div>

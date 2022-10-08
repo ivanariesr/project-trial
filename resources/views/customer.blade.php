@@ -11,18 +11,7 @@
                         <h4>List Data Customer</h4>
                     </div>
                     <div class="card-body">
-                        <style type="text/css">
-                            table {
-                                counter-reset: row-num -1;
-                              }
-                              table tr {
-                                counter-increment: row-num;
-                              }
-                              table tr td:first-child::before {
-                                  content: counter(row-num);
-                            }
-                            </style>
- 
+                        <?php $number=1; ?>
                         <table class="table table-bordered table-striped" id="DataTables">
                             <thead class="thead-dark">
                              <tr>
@@ -37,7 +26,7 @@
                            <tbody>
                              @foreach ($displaydata as $dc)
                              <tr>
-                               <td></td>
+                               <td>{{ $number++}}</td>
                                <td> {{$dc->customer}}</td>
                                <td> {{$dc->cust_type}}</td>
                                <td> {{$dc->area}}</td>

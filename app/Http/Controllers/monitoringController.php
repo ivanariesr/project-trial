@@ -235,7 +235,7 @@ class monitoringController extends Controller
         ->join('data_surats', 'data_monitorings.no_ids', '=', 'data_surats.no_ids')
         ->join('data_customers', 'data_monitorings.no_idc', '=', 'data_customers.no_idc')
         ->where('data_monitorings.no_idm', '=', $no_idm)->get();
-//       
+       
         $datapic_idpni = data_monitoring::join('data_pics','data_monitorings.no_idpni', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();
         $datapic_idpre = data_monitoring::join('data_pics','data_monitorings.no_idpre', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();
         $datapic_idppm = data_monitoring::join('data_pics','data_monitorings.no_idppm', '=', 'data_pics.no_idp')->select('data_pics.nama')->get();

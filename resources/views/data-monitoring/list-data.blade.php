@@ -49,7 +49,7 @@
                 @endif
                 
                 <div class="card-body">
-                  <iframe src="{{route('table-monitoring')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="no">
+                  <iframe src="{{route('table-monitoring')}}" frameborder="0"  width="100%" height="800px" id="iframe-table" scrolling="yes">
                 </iframe>
                 
                 </div>

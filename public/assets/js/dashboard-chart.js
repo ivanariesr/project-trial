@@ -1,11 +1,12 @@
+
 var ctx = document.getElementById("myChart").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    labels: labels_pendapatan,
     datasets: [{
-      label: 'Statistics',
-      data: [460, 458, 330, 502, 430, 610, 488],
+      label: 'Total Nilai Kontrak Tahunan',
+      data: summary_pendapatan,
       borderWidth: 2,
       backgroundColor: '#6777ef',
       borderColor: '#6777ef',
@@ -45,10 +46,10 @@ var ctx = document.getElementById("myChart2").getContext('2d');
 var myChart = new Chart(ctx, {
   type: 'bar',
   data: {
-    labels: ["hhhhhhhhhhhhhh", "kkkkkkkkkkkkkkk", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    labels: labels_deadline,
     datasets: [{
       label: 'Statistics',
-      data: [460, 458, 330, 430, 610, 488],
+      data: summary_deadline,
       borderWidth: 2,
       backgroundColor: '#6777ef',
       borderColor: '#6777ef',
@@ -86,31 +87,55 @@ var myChart = new Chart(ctx, {
 
 var ctx = document.getElementById("myChart3").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'doughnut',
+  type: 'pie',
   data: {
     datasets: [{
       data: [
-        80,
-        50,
-        40,
-        30,
-        20,
+        sa1,
+        sa2,
+        sa3,
+        sa4,
+        sa5,
+        sa6,
+        sa7,
+        sa8,
+        sa9,
+        sa10,
+        sa11,
+        sa12,
+        sa13,
       ],
       backgroundColor: [
-        '#191d21',
-        '#63ed7a',
-        '#ffa426',
-        '#fc544b',
-        '#6777ef',
+        '#ffffff',
+        '#EAB543',
+        '#25CCF7',
+        '#F97F51',
+        '#1B9CFC',
+        '#D6A2E8',
+        '#FC427B',
+        '#55E6C1',
+        '#6D214F',
+        '#2C3A47',
+        '#BDC581',
+        '#182C61',
+        '#000000'
       ],
       label: 'Dataset 1'
     }],
     labels: [
-      'Black',
-      'Green',
-      'Yellow',
-      'Red',
-      'Blue'
+      'Belum Ada Permintaan',
+      'RAB',
+      'Pricing',
+      'Penawaran',
+      'Nego',
+      'Belum Kontrak',
+      'Kesepakatan Harga',
+      'BA Kesepakatan',
+      'Kontrak',
+      'Laporan / BA',
+      'Tagihan',
+      'Terbayar',
+      'Cancel',
     ],
   },
   options: {
@@ -124,31 +149,28 @@ var myChart = new Chart(ctx, {
 
 var ctx = document.getElementById("myChart4").getContext('2d');
 var myChart = new Chart(ctx, {
-  type: 'pie',
+  type: 'doughnut',
   data: {
     datasets: [{
       data: [
-        80,
-        50,
-        40,
-        30,
-        100,
+        sp1,
+        sp2,
+        sp3,
+        sp4,
       ],
       backgroundColor: [
-        '#191d21',
-        '#63ed7a',
-        '#ffa426',
-        '#fc544b',
-        '#6777ef',
+        '#d2dae2',
+        '#4bcffa',
+        '#ffd32a',
+        '#0be881',
       ],
       label: 'Dataset 1'
     }],
     labels: [
-      'Black',
-      'Green',
-      'Yellow',
-      'Red',
-      'Blue'
+      'Batal',
+      'Belum Jalan',
+      'Running',
+      'Selesai'
     ],
   },
   options: {

@@ -20,19 +20,8 @@
 <body>
 
 <div>
-<style type="text/css">
 
-.css-serial {
-  counter-reset: serial-number;  /* Set the serial number counter to 0 */
-}
-
-.css-serial td:first-child:before {
-  counter-increment: serial-number;  /* Increment the serial number counter */
-  content: counter(serial-number);  /* Display the counter */
-}
-
-</style>
-
+<?php $number=1; ?>
       <table class="table table-bordered table-striped css-serial" id="DataTables">
         <thead class="thead-dark">
          <tr>
@@ -49,7 +38,7 @@
        <tbody>
          @foreach ($displaydata as $dc)
          <tr>
-           <td></td>
+           <td>{{ $number++}}</td>
            <td> {{$dc->unit}}</td> 
            <td> {{$dc->customer}}</td>
            <td> {{$dc->cust_type}}</td>
