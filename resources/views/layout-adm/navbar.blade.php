@@ -8,7 +8,7 @@
     <ul class="navbar-nav navbar-right">        
       <li><a href="#" class="nav-link nav-link-lg nav-link-user">
         @if(\Auth::check())
-        <img alt="image" src="../assets/img/avatar/avatar-3.png" class="rounded-circle mr-1">
+        <!--img alt="Profile" src="../assets/img/avatar/avatar-3.png" class="rounded-circle mr-1"-->
         <div class="d-sm-none d-lg-inline-block">Hi, {{\Auth::user()->name}}</div></a>
         @else
         <div class='dash '>

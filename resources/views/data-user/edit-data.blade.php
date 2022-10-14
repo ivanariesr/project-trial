@@ -2,18 +2,21 @@
 
 @section('title','Data PIC')
 
-@section('drop-pic','active')
+@section('drop-user','active')
 
-@section('sdbar-input-pic','active')
+@section('sdbar-list-user','active')
 
 @section('content-judul','Data PIC')
 
 @section('content-breadcrumb')
-    <div class="breadcrumb-item"><a href="/dashboard">Data PIC</a></div>
+    <div class="breadcrumb-item"><a href="/dashboard">Data User</a></div>
     <div class="breadcrumb-item active">Edit Data</div>
 @endsection
 <style>
     button.top {
+        margin-top: 35px;
+    }
+    a.top {
         margin-top: 35px;
     }
 </style>
@@ -23,38 +26,42 @@
             <div class="col-12 col-md-12 col-lg-12">
             <div class="card card-info">
                 <div class="card-header">
-                    <h4>Edit Data PIC : {{$dc->nama}}</h4>
+                    <h4>Edit Data User : {{$dc->nama}}</h4>
                 </div>
                 <div class="card-body">
                     
-                    <form method="post" action="{{ route('data-pic.update', $dc->id) }}">
+                    <form method="post" action="{{ route('data-user.update', $dc->id) }}">
                         @csrf
                         @method('PATCH')
                         <div class="form-group row">
                             <div class="form-group col-sm-3">
-                                <label for="pic" class="col-form-label">Nama PIC</label>
-                                <input type="text" class="form-control" id="pic" name="nama" placeholder="Nama PIC" required value="{{ $dc->nama }}">
-                            </div>
-
-                            <div class="form-group col-sm-2">
-                                <label for="posisi" class="col-form-label">Posisi</label>
-                                <select class="form-control" id="posisi" name="posisi" required onchange="generateid()">
-                                        <option value="{{ $dc->posisi }}"><b>{{ $dc->posisi }} (Awal)</b></option>
-                                        <option id="IDPNI" value="Niaga">Niaga</option>
-                                        <option id="IDPRE" value="Rendal" >Rendal</option>
-                                        <option id="IDPM" value="PM" >Project Manager</option>
-                                </select>
+                                <label for="name" class="col-form-label">Nama User</label>
+                                <input type="text" value="{{ $dc->name }}" class="form-control" id="name" name="name" placeholder="Nama User">
                             </div>
 
                             <div class="form-group col-sm-3">
-                                <label for="no_idp" class="col-form-label">Kode PIC</label>
-                                <input type="text" class="form-control" id="no_idp" name="no_idp" placeholder="Kode PIC" required readonly value="{{ $dc->no_idp}}">
+                                <label for="email" class="col-form-label">Email</label>
+                                <input type="email" value="{{ $dc->email }}" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
-                            <div class="form-group col-sm-2">
-                                <button type="button" class="btn btn-warning top" onclick="generateid()">Generate</button>
-                            </div>
-                        </div>
 
+                            <div class="form-group col-sm-3">
+                                <label for="username" class="col-form-label">Username</label>
+                                <input type="text" value="{{ $dc->username }}" class="form-control" id="username" name="username" placeholder="Username" onkeyup="nospaces(this)">
+                            </div>
+                        </div> 
+
+                        <div class="form-group row">
+
+                            <div class="form-group col-sm-3">
+                                <label for="password" class="col-form-label">Password Lama</label>
+                                <input type="text" class="form-control" id="password_text" name="password_text" placeholder="Password" value="{{ $dc->password_text }}" disabled>
+                            </div>
+
+<!--                            <div class="form-group col-sm-3">
+                            <a href="{{ route('data-user.show', $dc->id) }}" class="btn btn-warning top"><i class="far fa-pencil-square-o"></i> Ubah Password</a>
+                            </div>
+                        -->
+                        </div>
                         <button type="submit" class="btn btn-primary top"><i class="far fa-plus-square"></i> Update Data</button>
                     </form>
                         

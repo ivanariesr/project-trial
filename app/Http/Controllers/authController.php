@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use DB;
 
@@ -63,7 +64,7 @@ class authController extends Controller
             $User->username = $request->username;
             $User->name = $request->name;
             $User->email = $request->email;
-            $User->password = bcrypt($request->password);
+            $User->password = Hash::make($request->password);
             $User->password_text = $request->password;
             $User->save();
             return redirect()->route('data-user.index')

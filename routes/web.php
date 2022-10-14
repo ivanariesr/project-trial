@@ -56,4 +56,6 @@ Route::resource('data-user', 'userController');
 
     Route::post('/do-register', [authController::class,"doRegister"]);
     Route::get('/logout', [authController::class,"logout"]);
+    Route::post('/update_password/{id}', 'userController@update_password')->name('update_password');
+
 });
