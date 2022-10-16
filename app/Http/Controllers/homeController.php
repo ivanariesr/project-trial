@@ -3,78 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
-use App\Models\User;
+use App\Models\data_nilai;
+use App\Models\data_monitoring;
+use App\Models\data_customer;
 use DB;
 
-use App\Models\data_monitoring;
-use App\Models\data_surat;
-use App\Models\data_nilai;
-
-class authController extends Controller
+class homeController extends Controller
 {
-    function loginView()
-    {
-        return view("login");
-    }
-
-    function doLogin(Request $request)
-    {
-
-        $validator = Validator::make($request->all(), [
-            'username' => 'required',
-            'password' => 'required', // required and number field validation
-
-        ]); // create the validations
-        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
-        {
-            return back()->withInput()->withErrors($validator);
-            // validation failed redirect back to form
-
-        } else {
-            //validations are passed try login using laravel auth attemp
-            if (\Auth::attempt($request->only(["username","password"]))) {
-                return redirect("dashboard")->with('success', 'Berhasil Login');
-            } else {
-                return back()->withErrors( "Username / Password Anda Salah"); // auth fail redirect with error
-            }
-        }
-    }
-
-    function doRegister(Request $request)
-    {
-//        dd($request->all());
-        $validator = Validator::make($request->all(), [
-            'name' => 'required',
-            'role' => 'required',
-            'username' => 'required|unique:users',
-            'email' => 'required|email|unique:users',   // required and email format validation
-            'password' => 'required|min:8', // required and number field validation
-            'confirm_password' => 'required|same:password',
-        ]); // create the validations
-        
-        if ($validator->fails())   //check all validations are fine, if not then redirect and show error messages
-        {
-            return back()->withInput()->withErrors($validator);
-            // validation failed redirect back to form
-
-        } else {
-            //validations are passed, save new user in database
-            $User = new User;
-            $User->username = $request->username;
-            $User->name = $request->name;
-            $User->email = $request->email;
-            $User->role = $request->role;
-            $User->password = Hash::make($request->password);
-            $User->password_text = $request->password;
-            $User->save();
-            return redirect()->route('data-user.index')
-            ->with(['sucess' => 'Data User Berhasil di Registrasi']);        
-        }
-    }
-   // show dashboard
-    function dashboard()
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
     {
         $pendapatan = data_nilai::join('data_monitorings', 'data_nilais.no_idn', '=', 'data_monitorings.no_idn')
         ->select(DB::raw("SUM(terbayar) as total, YEAR(tgl_akhir) as tahun"))
@@ -144,18 +85,86 @@ class authController extends Controller
         $SP4 = data_monitoring::select(DB::raw("COUNT(stts_pkerjaan) as total_sttsp"))
         ->where('stts_pkerjaan', '=', 'Selesai')->pluck('total_sttsp');
         $spvalue4 = $SP4->values();
-        return view('/layout-adm/index',compact(
+        return view('/dashboard-user',compact(
             'data_pendapatan','labels_pendapatan',
             'savalue1','savalue2','savalue3','savalue4','savalue5','savalue6','savalue7',
             'savalue8','savalue9','savalue10','savalue11','savalue12','savalue13',
             'spvalue1','spvalue2','spvalue3','spvalue4', 'labels_deadline', 'data_deadline'
         ));
     }
+    
+    public function show_monitoring () {
+        $displaydata = data_monitoring::join('data_customers','data_monitorings.no_idc', '=', 'data_customers.no_idc')->get();
+        return view('/monitoring', compact('displaydata'));
+    }
 
-    // logout method to clear the sesson of logged in user
-    function logout()
+    public function show_customer () {
+        $displaydata = data_customer::all();
+        return view('/customer', compact('displaydata'));
+    }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
     {
-        \Auth::logout();
-        return redirect("login")->with('success', 'Berhasil Logout');;
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show($id)
+    {
+        //
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        //
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

@@ -64,7 +64,6 @@
          </tr>
          @endforeach
        </tbody>
-
  </table>
 
 <script type="text/javascript">

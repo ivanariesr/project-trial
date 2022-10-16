@@ -12,30 +12,30 @@
                     </div>
                     <div class="card-body">
                         <?php $number=1; ?>
-                        <table class="table table-bordered table-striped" id="DataTables">
-                            <thead class="thead-dark">
-                             <tr>
-                               <th scope="col">No</th>
-                               <th scope="col">Nama Customer</th>
-                               <th scope="col">Type</th>
-                               <th scope="col">Area</th>
-                               <th scope="col">Unit</th>
-                               <th scope="col">Kode Customer</th>
-                             </tr>
-                           </thead>
-                           <tbody>
-                             @foreach ($displaydata as $dc)
-                             <tr>
-                               <td>{{ $number++}}</td>
-                               <td> {{$dc->customer}}</td>
-                               <td> {{$dc->cust_type}}</td>
-                               <td> {{$dc->area}}</td>
-                               <td> {{$dc->unit}}</td> 
-                               <td> {{$dc->no_idc}}</td>
-                             </tr>
-                            @endforeach
-                           </tbody>
-                        </table>
+                        <table class="table table-bordered table-striped css-serial" id="DataTables">
+                          <thead class="thead-dark">
+                           <tr>
+                             <th scope="col">No</th>
+                             <th scope="col">Unit</th>
+                             <th scope="col">Nama Customer</th>
+                             <th scope="col">Type</th>
+                             <th scope="col">Area</th>
+                             <th scope="col">Kode Customer</th>
+                           </tr>
+                         </thead>
+                         <tbody>
+                           @foreach ($displaydata as $dc)
+                           <tr>
+                             <td>{{ $number++}}</td>
+                             <td> {{$dc->unit}}</td> 
+                             <td> {{$dc->customer}}</td>
+                             <td> {{$dc->cust_type}}</td>
+                             <td> {{$dc->area}}</td>
+                             <td> {{$dc->no_idc}}</td> 
+                           </tr>
+                           @endforeach
+                         </tbody>
+                   </table>
 
                     </div>
                     </div>
@@ -50,7 +50,7 @@
                 $('#DataTables').DataTable({
             });
         });
-            </script>
+        </script>
 @endsection
 
 

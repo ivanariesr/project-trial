@@ -45,12 +45,21 @@
                             </div>
 
                             <div class="form-group col-sm-3">
-                                <label for="username" class="col-form-label">Username</label>
-                                <input type="text" value="{{ $dc->username }}" class="form-control" id="username" name="username" placeholder="Username" onkeyup="nospaces(this)">
+                                <label for="role" class="col-form-label">Role</label>
+                                <select class="form-control" id="role" name="role" required>
+                                        <option value="{{ $dc->role }}"><b>{{ $dc->role }} (Awal)</b></option>
+                                        <option id="admin" value="admin">Admin</option>
+                                        <option id="user" value="user" >User</option>
+                                </select>
                             </div>
                         </div> 
 
                         <div class="form-group row">
+
+                            <div class="form-group col-sm-3">
+                                <label for="username" class="col-form-label">Username</label>
+                                <input type="text" value="{{ $dc->username }}" class="form-control" id="username" name="username" placeholder="Username" onkeyup="nospaces(this)">
+                            </div>
 
                             <div class="form-group col-sm-3">
                                 <label for="password" class="col-form-label">Password Lama</label>

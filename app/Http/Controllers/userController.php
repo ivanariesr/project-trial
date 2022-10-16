@@ -67,6 +67,11 @@ class userController extends Controller
         return view('/data-user/edit-data',compact('dc'));
     }
 
+    public function edit_user($id)
+    {
+        $dc = User::findOrFail($id);
+        return view('/data-user/edit-user',compact('dc'));
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -119,7 +124,7 @@ class userController extends Controller
                 'password_text' => $request->password
             ]);
 
-            return redirect()->route('data-user.index')
+            return redirect()->route('edit_user',auth()->user()->id)
             ->with(['sucess' => 'Password Berhasil Di Update']);
         }
     }

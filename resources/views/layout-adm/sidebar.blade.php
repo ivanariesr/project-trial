@@ -35,17 +35,25 @@
               <li class="@yield('sdbar-list-pic')"><a class="nav-link" href="/data-pic/"><i class="far fa-id-badge"></i><span>List Data</span></a></li>
               <li class="@yield('sdbar-input-pic')"><a class="nav-link" href="/data-pic/create"><i class="fas fa-user-plus"></i><span>Input Data</span></a></li>
             </ul>
-          </li>
-
-          <li class="menu-header">User Aplikasi</li>
-          <li class="nav-item dropdown @yield('drop-user')">
+          </li>           
+          <?php 
+          if (auth()->user()->role == 'admin') {
+            echo '<li class="menu-header">User Aplikasi</li>
+            <li class="nav-item dropdown'?> @yield('drop-user') <?php echo'">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-secret"></i><span>Data User Aplikasi</span></a>
             <ul class="dropdown-menu">
-              <li class="@yield('sdbar-list-user')"><a class="nav-link" href="/data-user/"><i class="fas fa-user-lock"></i><span>List Data</span></a></li>
-              <li class="@yield('sdbar-input-user')"><a class="nav-link" href="/data-user/create"><i class="fas fa-user-tie"></i><span>Input Data</span></a></li>
+              <li class="'?>@yield('sdbar-list-user')<?php echo'"><a class="nav-link" href="/data-user/"><i class="fas fa-user-lock"></i><span>List Data</span></a></li>
+              <li class="'?>@yield('sdbar-input-user')<?php echo'"><a class="nav-link" href="/data-user/create"><i class="fas fa-user-tie"></i><span>Input Data</span></a></li>
             </ul>
-          </li>
-
+          </li> ';
+          }
+          else {
+            echo '<li class="menu-header">User Setting</li>
+            <li class="nav-item">
+            <a href="'?> {{ route('edit_user', auth()->user()->id) }} <?php echo '" class="nav-link"><i class="fas fa-cogs"></i><span>User Setting</span></a>
+          </li> ';
+          }
+          ?>
         </ul>
 
         <div class="mt-4 mb-4 p-3 hide-sidebar-mini">

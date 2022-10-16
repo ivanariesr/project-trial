@@ -19,18 +19,14 @@ use App\Http\Middleware\Authenticate;
 
 /* -------------------------------- */
 
-Route::get('/', function () {
-
-    return view('dashboard-user');
-});
+Route::get('/', 'homeController@index');
+Route::get('/daftar-monitoring', 'homeController@show_monitoring');
+Route::get('/daftar-customer', 'homeController@show_customer');
 
 Route::get('/login', function () {
     return view('login');
 });
 
-Route::get('/daftar-monitoring', function () {
-    return view('monitoring');
-});
 
 
 Route::get('/login', [authController::class,"loginView"])->name('login');
@@ -51,6 +47,7 @@ Route::resource('data-user', 'userController');
     Route::get('/datatables-pic', 'picController@listdata')->name('table-pic');    
     Route::get('/datatables-user', 'userController@listdata')->name('table-user');    
     Route::get('/datatables-monitoring', 'monitoringController@listdata')->name('table-monitoring');    
+    Route::get('/data-user/edit/{id}', 'userController@edit_user')->name('edit_user');    
     
     Route::get('/download/{request}', 'monitoringController@download_file')->name('download_file');
 

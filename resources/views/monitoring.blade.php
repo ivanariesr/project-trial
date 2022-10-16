@@ -12,30 +12,32 @@
             </div>
             <div class="card-body">
               <?php $number=1; ?>
-                <table class="table table-bordered" id="users-table">
-                       <thead class="thead-dark">
-                        <tr>
-                          <th scope="col">No</th>
-                          <th scope="col">No PRK</th>
-                          <th scope="col">Nama Pekerjaan</th>
-                          <th scope="col">Customer</th>
-                          <th scope="col">Unit</th>
-                          <th scope="col">Status Pekerjaan</th>
-                          <th scope="col">PIC</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th scope="row">1</th>
-                          <td>00002022</td>
-                          <td>Major Overhaul ST 2.0 PLTU Belawan</td>
-                          <td>PT PLN UIKSBU</td>
-                          <td>PLTU Belawan #1</td>
-                          <td>Belum Jalan</td>
-                          <td>Ria Rizky</td>
-                        </tr>
-                      </tbody>
-                </table>
+              <table class="table table-bordered table-striped css-serial" id="DataTables">
+                <thead class="thead-dark">
+                 <tr>
+                   <th scope="col">No</th>
+                   <th scope="col">PRK / WO</th>
+                   <th scope="col">Unit</th>
+                   <th scope="col">Nama Pekerjaan</th>
+                   <th scope="col">RKAP</th>
+                   <th scope="col">Status Pekerjaan</th>
+                   <th scope="col">Status Admin</th>
+                 </tr>
+               </thead>
+               <tbody>
+                 @foreach ($displaydata as $dc)
+                 <tr>
+                   <td>{{ $number++}}</td>
+                   <td> {{$dc->no_PRKorWO}}</td>
+                   <td> {{$dc->unit}}</td> 
+                   <td> {{$dc->nm_pekerjaan}}</a></td>
+                   <td> {{$dc->rkap}}</td>
+                   <td> {{$dc->stts_pkerjaan}}</td> 
+                   <td> {{$dc->stts_admin}}</td> 
+                 </tr>
+                 @endforeach
+               </tbody>
+         </table>
 
             </div>
             </div>
