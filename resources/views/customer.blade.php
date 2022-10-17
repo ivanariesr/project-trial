@@ -20,7 +20,6 @@
                              <th scope="col">Nama Customer</th>
                              <th scope="col">Type</th>
                              <th scope="col">Area</th>
-                             <th scope="col">Kode Customer</th>
                            </tr>
                          </thead>
                          <tbody>
@@ -31,7 +30,6 @@
                              <td> {{$dc->customer}}</td>
                              <td> {{$dc->cust_type}}</td>
                              <td> {{$dc->area}}</td>
-                             <td> {{$dc->no_idc}}</td> 
                            </tr>
                            @endforeach
                          </tbody>

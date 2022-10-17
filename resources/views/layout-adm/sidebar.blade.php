@@ -35,7 +35,13 @@
               <li class="@yield('sdbar-list-pic')"><a class="nav-link" href="/data-pic/"><i class="far fa-id-badge"></i><span>List Data</span></a></li>
               <li class="@yield('sdbar-input-pic')"><a class="nav-link" href="/data-pic/create"><i class="fas fa-user-plus"></i><span>Input Data</span></a></li>
             </ul>
-          </li>           
+          </li>
+
+          <li class="menu-header">User Setting</li>
+            <li class="nav-item">
+            <a href="{{ route('edit_user', auth()->user()->id) }}" class="nav-link"><i class="fas fa-cogs"></i><span>User Setting</span></a>
+          </li> 
+
           <?php 
           if (auth()->user()->role == 'admin') {
             echo '<li class="menu-header">User Aplikasi</li>
@@ -48,10 +54,7 @@
           </li> ';
           }
           else {
-            echo '<li class="menu-header">User Setting</li>
-            <li class="nav-item">
-            <a href="'?> {{ route('edit_user', auth()->user()->id) }} <?php echo '" class="nav-link"><i class="fas fa-cogs"></i><span>User Setting</span></a>
-          </li> ';
+            echo '';
           }
           ?>
         </ul>
