@@ -27,15 +27,22 @@
               <li class="@yield('sdbar-input-customer')"><a class="nav-link" href="/data-customer/create"><i class="fas fa-id-card-alt"></i><span>Input Data</span></a></li>
             </ul>
           </li>
-
-          <li class="menu-header">PIC</li>
-          <li class="nav-item dropdown @yield('drop-pic')">
+          
+          <?php 
+          if (auth()->user()->role == 'admin') {
+          echo '<li class="menu-header">PIC</li>
+          <li class="nav-item dropdown'?> @yield('drop-pic') <?php echo'">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Data PIC</span></a>
             <ul class="dropdown-menu">
-              <li class="@yield('sdbar-list-pic')"><a class="nav-link" href="/data-pic/"><i class="far fa-id-badge"></i><span>List Data</span></a></li>
-              <li class="@yield('sdbar-input-pic')"><a class="nav-link" href="/data-pic/create"><i class="fas fa-user-plus"></i><span>Input Data</span></a></li>
+              <li class="'?> @yield('sdbar-list-pic') <?php echo'"><a class="nav-link" href="/data-pic/"><i class="far fa-id-badge"></i><span>List Data</span></a></li>
+              <li class="'?> @yield('sdbar-input-pic') <?php echo '"><a class="nav-link" href="/data-pic/create"><i class="fas fa-user-plus"></i><span>Input Data</span></a></li>
             </ul>
-          </li>
+          </li> ';
+          }
+          else {
+            echo '';
+          }
+          ?>
 
           <li class="menu-header">User Setting</li>
             <li class="nav-item">
