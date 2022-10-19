@@ -172,7 +172,6 @@ class monitoringController extends Controller
             $Sur = data_surat::create($request->all());
             $Nil = data_nilai::create($request->all());
 */
-
             $Mon->no_idm = $request->no_idm;
             $Mon->no_idn = $request->no_idn;
             $Mon->no_idc = $request->no_idc;
@@ -205,16 +204,23 @@ class monitoringController extends Controller
             $Sur->tgls_dok = $request->tgls_dok;
             $Sur->save();
 
-            $Nil->no_idn = $request->no_idn;
-            $Nil->rab = $request->rab;
+            $rab = preg_replace("/[^0-9]/", "", $request->rab );
+            $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
+            $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
+            $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
+            $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
+            $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
             
-            $Nil->pnwrn = $request->pnwrn;
-            $Nil->hpp = $request->hpp;
+            $Nil->no_idn = $request->no_idn;
+            $Nil->rab = $rab;
+            
+            $Nil->pnwrn = $pnwrn;
+            $Nil->hpp = $hpp;
             $Nil->lr = $request->lr;
-            $Nil->kontrak = $request->kontrak;
+            $Nil->kontrak = $kontrak;
 
-            $Nil->tagihan = $request->tagihan;
-            $Nil->terbayar = $request->terbayar;
+            $Nil->tagihan = $tagihan;
+            $Nil->terbayar = $terbayar;
             $Nil->save();
 
             return redirect()->route('data-monitoring.index')
@@ -451,14 +457,21 @@ $Nil->update([
             $Sur[0]->noba_stp = $request->noba_stp;
             $Sur[0]->tgls_dok = $request->tgls_dok;
 
+            $rab = preg_replace("/[^0-9]/", "", $request->rab );
+            $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
+            $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
+            $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
+            $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
+            $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
+
             $Nil[0]->no_idn = $request->no_idn;
-            $Nil[0]->rab = $request->rab;
-            $Nil[0]->pnwrn = $request->pnwrn;
-            $Nil[0]->hpp = $request->hpp;
+            $Nil[0]->rab = $rab;
+            $Nil[0]->pnwrn = $pnwrn;
+            $Nil[0]->hpp = $hpp;
             $Nil[0]->lr = $request->lr;
-            $Nil[0]->kontrak = $request->kontrak;
-            $Nil[0]->tagihan = $request->tagihan;
-            $Nil[0]->terbayar = $request->terbayar;
+            $Nil[0]->kontrak = $kontrak;
+            $Nil[0]->tagihan = $tagihan;
+            $Nil[0]->terbayar = $terbayar;
             
             $Sur[0]->save();
             $Nil[0]->save();

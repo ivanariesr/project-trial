@@ -162,37 +162,37 @@
                             <div class="form-group col-sm-2">
                                 <input type="text" class="form-control" name="no_idn" id="no_idn" placeholder="Nomor ID Nilai" value="{{$dc[0]->no_idn}}" hidden>
                                 <label for="rab" class="col-form-label">RAB Dasar</label>
-                                <input type="text" class="form-control" name="rab" id="rab" value="{{$dc[0]->rab}}" placeholder="RAB Dasar">
+                                <input type="text" class="form-control rupiah" name="rab" id="rab" value="{{$dc[0]->rab}}" placeholder="RAB Dasar">
                                 <br>
                                 <input type="file" name="dok_rab"> [doc,docx,xlx,xls,xlsx,pdf]
                                 <br>
                                 <br>
                                 <label for="kontrak" class="col-form-label">Kontrak</label>
-                                <input type="text" class="form-control" name="kontrak" id="kontrak" value="{{$dc[0]->kontrak}}" placeholder="Harga Kontrak">
+                                <input type="text" class="form-control rupiah" name="kontrak" id="kontrak" value="{{$dc[0]->kontrak}}" placeholder="Harga Kontrak">
                                 <br> 
                                 <input type="file" name="dok_kontrak"> [doc,docx,pdf]
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="pnwrn" class="col-form-label">Penawaran</label>
-                                <input type="text" class="form-control" name="pnwrn" id="pnwrn" value="{{$dc[0]->pnwrn}}" placeholder="Penawaran Harga">
+                                <input type="text" class="form-control rupiah" name="pnwrn" id="pnwrn" value="{{$dc[0]->pnwrn}}" placeholder="Penawaran Harga">
                                 <br>
                                 <input type="file" name="dok_pnwrn"> [doc,docx,pdf]
                                 <br>
                                 <br>
                                 <label for="tagihan" class="col-form-label">Tagihan</label>
-                                <input type="text" class="form-control" name="tagihan" id="tagihan" value="{{$dc[0]->tagihan}}" placeholder="Nilai Tagihan">
+                                <input type="text" class="form-control rupiah" name="tagihan" id="tagihan" value="{{$dc[0]->tagihan}}" placeholder="Nilai Tagihan">
                             </div>
 
                             <div class="form-group col-sm-2">
                                 <label for="hpp" class="col-form-label">HPP</label>
-                                <input type="text" class="form-control" name="hpp" id="hpp" value="{{$dc[0]->hpp}}" placeholder="Harga Pokok Produksi">
+                                <input type="text" class="form-control rupiah" name="hpp" id="hpp" value="{{$dc[0]->hpp}}" placeholder="Harga Pokok Produksi">
                                 <br>
                                 <br>
                                 <br>
                                 <br>
                                 <label for="terbayar" class="col-form-label" style="">Terbayar</label>
-                                <input type="text" class="form-control" name="terbayar" id="terbayar" value="{{$dc[0]->terbayar}}" placeholder="Nilai Terbayar">
+                                <input type="text" class="form-control rupiah" name="terbayar" id="terbayar" value="{{$dc[0]->terbayar}}" placeholder="Nilai Terbayar">
                             </div>
 
                             <div class="form-group col-sm-2">
@@ -287,8 +287,33 @@
         </div>
     </div>
 @endsection
-
 @push('js-before-scripts')
+
+<script>
+    $('.rupiah').on('load',function(){
+    var angka = $(this).val();
+    var hasilAngka = formatRibuan(angka);
+        $(this).val(hasilAngka);
+    });
+
+    function formatRibuan(angka){
+    var number_string = angka.replace(/[^,\d]/g, '').toString(),
+    split           = number_string.split(','),
+    sisa            = split[0].length % 3,
+    angka_hasil     = split[0].substr(0, sisa),
+    ribuan          = split[0].substr(sisa).match(/\d{3}/gi);
+
+    // tambahkan titik jika yang di input sudah menjadi angka ribuan
+    if(ribuan){
+    separator = sisa ? '.' : '';
+    angka_hasil += separator + ribuan.join('.');
+    }
+
+    angka_hasil = split[1] != undefined ? angka_hasil + ',' + split[1] : angka_hasil;
+    return angka_hasil;
+    }
+</script>
+
 @endpush
 @push('js-after-scripts')
 @endpush
