@@ -24,7 +24,6 @@
                     <a href="{{ route('data-monitoring.edit', $dc[0]->no_idm)}}" target="_parent">
                         <button class="btn btn-primary pull-right" style="margin-left: 20px;"> Edit </button>
                     </a>
-    
                 </div>
                 
                 <div class="card-body">
@@ -234,9 +233,9 @@
                                         <td>Keterangan Pekerjaan</td>
                                         <td>:</td>
                                         <td>&nbsp;{{$dc[0]->ket_progress}}</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
-                                        <td>&nbsp;</td>
+                                        <td>Originator</td>
+                                        <td>:</td>
+                                        <td><b>&nbsp;{{$dc[0]->originator}}</b></td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>

@@ -188,6 +188,7 @@ class monitoringController extends Controller
             $Mon->tgl_akhir = $request->tgl_akhir;
             $Mon->stts_admin = $request->stts_admin;
             $Mon->ket_progress = $request->ket_progress;
+            $Mon->originator = auth()->user()->name;
             $Mon->save();
 
             $Sur->no_ids = $request->no_ids;
@@ -203,14 +204,48 @@ class monitoringController extends Controller
             $Sur->noba_stp = $request->noba_stp;
             $Sur->tgls_dok = $request->tgls_dok;
             $Sur->save();
-
-            $rab = preg_replace("/[^0-9]/", "", $request->rab );
-            $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
-            $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
-            $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
-            $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
-            $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
             
+            if ($request->rab=="") {
+                $rab =null;
+            }
+            else {
+                $rab = preg_replace("/[^0-9]/", "", $request->rab );
+            }
+
+            if ($request->pnwrn=="") {
+                $pnwrn =null;
+            }
+            else {
+                $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
+            }
+
+            if ($request->hpp=="") {
+                $hpp =null;
+            }
+            else {
+                $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
+            }
+
+            if ($request->kontrak==""){
+                $kontrak =null;
+            }
+            else {
+                $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
+            }
+
+            if ($request->tagihan=="") {
+                $tagihan =null;
+            }
+            else {
+                $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
+            }
+            if ($request->terbayar=="") {
+                $terbayar =null;
+            }            
+            else {
+                $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
+            }
+
             $Nil->no_idn = $request->no_idn;
             $Nil->rab = $rab;
             
@@ -457,12 +492,47 @@ $Nil->update([
             $Sur[0]->noba_stp = $request->noba_stp;
             $Sur[0]->tgls_dok = $request->tgls_dok;
 
-            $rab = preg_replace("/[^0-9]/", "", $request->rab );
-            $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
-            $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
-            $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
-            $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
-            $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
+            if ($request->rab=="") {
+                $rab =null;
+            }
+            else {
+                $rab = preg_replace("/[^0-9]/", "", $request->rab );
+            }
+
+            if ($request->pnwrn=="") {
+                $pnwrn =null;
+            }
+            else {
+                $pnwrn = preg_replace("/[^0-9]/", "", $request->pnwrn );
+            }
+
+            if ($request->hpp=="") {
+                $hpp =null;
+            }
+            else {
+                $hpp = preg_replace("/[^0-9]/", "", $request->hpp );
+            }
+
+            if ($request->kontrak==""){
+                $kontrak =null;
+            }
+            else {
+                $kontrak = preg_replace("/[^0-9]/", "", $request->kontrak );
+            }
+
+            if ($request->tagihan=="") {
+                $tagihan =null;
+            }
+            else {
+                $tagihan = preg_replace("/[^0-9]/", "", $request->tagihan );
+            }
+            if ($request->terbayar=="") {
+                $terbayar =null;
+            }            
+            else {
+                $terbayar = preg_replace("/[^0-9]/", "", $request->terbayar );
+            }
+
 
             $Nil[0]->no_idn = $request->no_idn;
             $Nil[0]->rab = $rab;
