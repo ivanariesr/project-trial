@@ -95,6 +95,7 @@ class userController extends Controller
             $usr->username = $request->username;
             $usr->name = $request->name;
             $usr->email= $request->email;
+            $usr->role = $request->role;
             $usr->save();
             return redirect()->route('data-user.index')
             ->with(['sucess' => 'Data User Berhasil Di Update']);

@@ -22,6 +22,7 @@
            <th scope="col">No</th>
            <th scope="col">Nama</th>
            <th scope="col">Username</th>
+           <th scope="col">Role</th>
            <th scope="col">Email</th>
            <th scope="col">Edit</th>
            <th scope="col">Delete</th>
@@ -33,6 +34,7 @@
            <td>{{ $number++}}</td>
            <td> {{$dc->name}}</td>
            <td> {{$dc->username}}</td>
+           <td> {{$dc->role}}</td>
            <td> {{$dc->email}}</td>
            <td>
              <a href="{{ route('data-user.edit', $dc->id)}}" target="_parent" class="btn btn-primary">
