@@ -50,7 +50,7 @@
                     </div>
                     @endif
                     <div class="form-group row">
-                        <table class="table table-striped table-hover" style="font-size: 14px;">
+                        <table class="table table-striped table-hover" style="font-size: 13px;">
                             <tbody>
                                 <tbody>
                                     <tr>
@@ -157,8 +157,8 @@
                                         <td>&nbsp;:</td>
                                         <td>&nbsp;{{$dc[0]->tgl_akhir}}</td>
                                         <td>Terbayar</td>
-                                        <td>&nbsp;:{{$dc[0]->terbayar}}</td>
-                                        <td>&nbsp;</td>
+                                        <td>&nbsp;:</td>
+                                        <td>&nbsp; {{$dc[0]->terbayar}}</td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
                                         <td>&nbsp;</td>
