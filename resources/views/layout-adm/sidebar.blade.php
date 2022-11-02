@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
       <div class="sidebar-brand">
-        <a href="/"><img alt="PT Trial" src="{{ asset('assets/img/BCL.pg') }}" class="logo-bcl"></a>
+        <a href="/"><img alt="PT PJBS" src="{{ asset('assets/img/BCL.pg') }}" class="logo-bcl"></a>
       </div>
       <div class="sidebar-brand sidebar-brand-sm">
-        <a href="index.html">TR</a>
+        <a href="index.html">PJBS</a>
       </div>
       <ul class="sidebar-menu">
           <li class="menu-header">Dashboard</li>
@@ -29,7 +29,7 @@
           </li>
           
           <?php 
-          if (auth()->user()->role == 'admin') {
+          if (auth()->user()->role == 'Super Admin') {
           echo '<li class="menu-header">PIC</li>
           <li class="nav-item dropdown'?> @yield('drop-pic') <?php echo'">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-users"></i><span>Data PIC</span></a>
@@ -50,7 +50,7 @@
           </li> 
 
           <?php 
-          if (auth()->user()->role == 'admin') {
+          if (auth()->user()->role == 'Super Admin') {
             echo '<li class="menu-header">User Aplikasi</li>
             <li class="nav-item dropdown'?> @yield('drop-user') <?php echo'">
             <a href="#" class="nav-link has-dropdown"><i class="fas fa-user-secret"></i><span>Data User Aplikasi</span></a>

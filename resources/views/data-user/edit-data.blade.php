@@ -48,8 +48,8 @@
                                 <label for="role" class="col-form-label">Role</label>
                                 <select class="form-control" id="role" name="role" required>
                                         <option value="{{ $dc->role }}"><b>{{ $dc->role }} (Awal)</b></option>
-                                        <option id="admin" value="admin">Admin</option>
-                                        <option id="user" value="user" >User</option>
+                                        <option id="admin" value="Super Admin">Super Admin</option>
+                                        <option id="user" value="Admin" >User</option>
                                 </select>
                             </div>
                         </div> 
