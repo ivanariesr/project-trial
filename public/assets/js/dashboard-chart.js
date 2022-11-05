@@ -106,7 +106,7 @@ var myChart = new Chart(ctx, {
         sa13,
       ],
       backgroundColor: [
-        '#ffffff',
+        '#367E18',
         '#EAB543',
         '#25CCF7',
         '#F97F51',
