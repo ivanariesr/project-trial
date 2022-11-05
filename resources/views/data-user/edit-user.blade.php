@@ -43,16 +43,21 @@
                                 <label for="email" class="col-form-label">Email</label>
                                 <input type="email" value="{{ $dc->email }}" class="form-control" id="email" name="email" placeholder="Email">
                             </div>
-
-                            <div class="form-group col-sm-3">
+                            <?php 
+                            if (auth()->user()->role == 'Super Admin') {
+                            echo'<div class="form-group col-sm-3">
                                 <label for="role" class="col-form-label">Role</label>
                                 <select class="form-control" id="role" name="role" required>
                                         <option value="{{ $dc->role }}"><b>{{ $dc->role }} (Awal)</b></option>
                                         <option id="admin" value="Super Admin">Super Admin</option>
                                         <option id="user" value="Admin" > Admin </option>
                                 </select>
-                            </div>
-
+                            </div>';
+                            }
+                            else {
+                                echo '';
+                            }
+                            ?>
                         </div> 
 
                         <div class="form-group row">
