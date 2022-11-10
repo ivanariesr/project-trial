@@ -48,7 +48,7 @@
                             echo'<div class="form-group col-sm-3">
                                 <label for="role" class="col-form-label">Role</label>
                                 <select class="form-control" id="role" name="role" required>
-                                        <option value="{{ $dc->role }}"><b>{{ $dc->role }} (Awal)</b></option>
+                                        <option value="';?>{{ $dc->role }}<?php echo'>"><b>';?>{{ $dc->role }}<?php echo' (Awal)</b></option>
                                         <option id="admin" value="Super Admin">Super Admin</option>
                                         <option id="user" value="Admin" > Admin </option>
                                 </select>
